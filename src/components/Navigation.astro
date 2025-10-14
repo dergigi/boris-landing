@@ -39,24 +39,34 @@
       <ul class="list-reset sm:flex justify-end flex-1 items-center">
         <li class="mr-3">
           <a
-            class="inline-block py-2 px-4 text-black no-underline hover:text-gray-800 hover:text-underline"
+            class="inline-block py-2 px-4 text-black dark:text-gray-200 no-underline hover:text-gray-800 dark:hover:text-white hover:text-underline"
             href="#features"
             >Features</a
           >
         </li>
         <li class="mr-3">
           <a
-            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+            class="inline-block text-black dark:text-gray-200 no-underline hover:text-gray-800 dark:hover:text-white hover:text-underline py-2 px-4"
             href="#faq"
             >FAQ</a
           >
         </li>
         <li class="mr-3">
           <a
-            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+            class="inline-block text-black dark:text-gray-200 no-underline hover:text-gray-800 dark:hover:text-white hover:text-underline py-2 px-4"
             href="#pricing"
             >More</a
           >
+        </li>
+        <li class="mr-3">
+          <button
+            onclick="toggleTheme()"
+            class="inline-block py-2 px-3 text-black dark:text-gray-200 hover:text-gray-800 dark:hover:text-white opacity-60 hover:opacity-100 transition-opacity"
+            aria-label="Toggle theme"
+          >
+            <i id="theme-toggle-sun" class="fas fa-sun dark:hidden"></i>
+            <i id="theme-toggle-moon" class="fas fa-moon hidden dark:inline"></i>
+          </button>
         </li>
       </ul>
     </div>

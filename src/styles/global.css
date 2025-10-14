@@ -7,6 +7,26 @@
   --boris-yellow: #fde047; /* Yellow (Tailwind yellow-300) */
   --boris-orange: #f97316; /* Orange (Tailwind orange-500) */
   --boris-purple: #9333ea; /* Purple (Tailwind purple-600) */
+  
+  /* Ivory Theme (Light) */
+  --bg-primary: #FFFFF0; /* Ivory */
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f2f2f2;
+  --text-primary: #1f2937; /* gray-800 */
+  --text-secondary: #4b5563; /* gray-600 */
+  --text-tertiary: #6b7280; /* gray-500 */
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  /* Graphene Theme (Dark) */
+  --bg-primary: #18181b; /* zinc-900 */
+  --bg-secondary: #27272a; /* zinc-800 */
+  --bg-tertiary: #3f3f46; /* zinc-700 */
+  --text-primary: #fafafa; /* gray-50 */
+  --text-secondary: #e4e4e7; /* zinc-200 */
+  --text-tertiary: #a1a1aa; /* zinc-400 */
+  --border-color: #3f3f46;
 }
 
 html {
@@ -14,10 +34,13 @@ html {
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 .gradient {
-  background-color: #FFFFF0;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 button,
