@@ -1,0 +1,108 @@
+good morning so I want to talk about Boris a little bit which is the little
+reading app highlighting app that I've built on the side over the last two
+weeks now or so so the bulk of the work I feel like was done in a couple of
+days that's where we're at in terms of I'm coding now the models and the kind
+of additional tooling around Nostr is good enough that you can actually build
+a meaningful app in a very short period of time I think the prerequisite is
+that you understand the concepts that you're using and that you have good
+taste so with understanding and taste you can go all the way you don't need to read
+or write a single line of code like I certainly don't I mean I used to write
+software I could but I consciously decide not to I don't want to look at the
+code I don't want to see the code I just want to interact with the agents and in
+the best case like I feel like I'm I'm almost there maybe in a year from now
+we'll be there in the best case I want to interact with the agents with to kind
+of voice only voice and screenshots only I don't want to type so lots of my
+prompts are kind of start out as voice notes start out as recordings and then
+I just feed it into the LLMS to produce something and most of the time the
+stuff I'm working on is automatically deployed and then I just if something
+breaks it looks weird it doesn't work as I like it to then I will course
+correct by feeding screenshots visually input into the LLMS and that's kind of
+how I've been doing things for a while now and then works really well like the
+the results are actually pretty and usable and yeah I hope that Boris is at
+least not ugly I think it turned out quite well it's quite pretty for a reading
+app it's it has the things that I always wanted to have and like a
+master-based long-form reading and highlighting app it's still not done yet it's
+definitely not perfect I guess it will never be but I still want to add a couple
+features before I publish it like publicly or be more allowed about it kind of
+in stealth mode right now just hacking away at it hammering away at it and I
+really enjoy it it's a lot of fun again I learned a lot I learned a lot a lot
+about the various nips and the various kinds and how to do things properly and
+how to yeah how to build something like a reading app like a pocket or
+Instapaper or read wise replacement build something for the long run something
+that's not serenative something that won't go away something that can't
+rock pull you something where you are actually 100% in the driver's seat when
+it comes to your curations your reading lists the annotations you create all
+that kind of stuff so that's my motivation for building out Boris and I would
+say I'm like 80% there right now it's definitely usable I've been using it quite
+intensely the last couple days there's a couple of things that I definitely
+want to improve one of the features that made pocket and similar apps great is
+that on mobile you can just share to pocket and it's a very quick way to save
+something I build Boris as a PWA so I'm not even sure if that's possible but
+maybe I'll do a very simple native companion app or something like that just does
+it I don't know maybe there's another way for now I use Nostr bookmarks which
+might even be better like if you're a Nostr a lot and and you see you see an
+interesting link just edit as a bookmark and Boris will gobble it up you'll
+find it in Boris again in your reading list or in your bookmark list so that
+might be a better approach I might not even need the other thing that I just
+described a minute ago and once you understand how it works you can also just
+you know post it out or use a Nostr bookmarking app to edit to your bookmarks
+yeah I probably don't have to build this myself now that I think of it because
+Boris not only takes public bookmarks and private bookmarks it also will display
+web bookmarks like nip b0 so any type of bookmark will kind of land in Boris and
+be understood by Boris the killer feature I think is that works offline so if
+you have a local relay you can just use it as you would normally you can just
+create highlights and those kind of things and browse the content that's on your
+local relay and I think that's neat that was kind of the point of the
+experiment is let's see if I can build a Nostr native reader that works offline
+on any device I mean the assumption is that the user has a local relay but I
+want to incentivize users to to run local relays and one also incentivize
+developers to make running local relays easier I mean on Android we have
+Citrine which is fantastic on the desktop we have Nostr relay tray which is also
+fantastic for developers with neck and AK V&JF's Nostr Army knife so we have a
+bunch of tools and again like if we do all this right if we build this out
+right then this stuff will just kind of be around forever like in the sense that
+there is no central there is no central authority that can rock pull you there
+is no service that can be shut down you can just self-host any part of it you
+can use the relays of other people you can yeah even self-host web apps and
+the variants various clients yourself and all those kind of things so anyway I
+found myself like I really enjoy building this out it's kind of a creative
+outlet it's almost therapeutic I had this vision for this reading app for a
+long time now like a ridiculously long time like even pre-Nostr I wanted to
+build something like that and I think almost three years ago 20 years ago I wrote
+orange text purple text orange highlight that's the purple text orange highlights
+that's the title and it would kind of sketched out my vision of how this could
+work with like swarm highlights and automatic revenue splits using lighting
+prisms or using subsplits those kind of things those kind of ideas and yeah
+Boris is my attempt to build all this out so again I'm like more than halfway
+there maybe 80% there swarm highlights work subslets work highlighting works
+offline mode works more or less I still need to fix some bugs there's still a
+couple of improvements it's also a good way to discover long-form content using
+highlights and I have an explorer page I'm still gonna put in some work into
+this because I want to kind of break it down not only I want to be I want to
+use it to be able to see stuff from their friends and from the friends of
+friends and from the wider Nostr ecosystem so that's kind of the three-tier
+approach that I'm gonna build into everything and yeah then I think Boris will be a
+great special purpose client and its purpose is to read content mostly what you
+save yourself into your bookmarks and so on discover content just by browsing
+around and clicking around and yeah seeing what kind of highlights other people
+created and so on and what kind of articles they wrote and what articles they found
+interesting and it's definitely a scratch my own itch kind of situation so I
+built it for myself I am the Boris power user and in the best case there might be
+a second user or third one I hope that this will be useful for some people it's
+definitely useful for me and it's a lot of fun to build it out and I just really
+enjoy building something useful and something beautiful and who knows maybe
+I'll build more of this like I've built ants now the search that I always wanted
+to have it's also not fully done yet but I'll return to that soon and now I've
+Boris the reading app that I always wanted to have and who knows maybe the next one
+will be the writing app that I always wanted to have and have some other ideas as
+well of course but yeah I think I'm gonna leave it at that I'll talk more about Boris
+more publicly at some point in time I probably also gonna write an introductory
+blog post about it but I still need to or I still want to kind of polish get rid
+of the rough edges and polish it a little bit and just make sure this stuff works
+and make sure that I'm happy with it because it's literally it's like gardening
+for me right now I just do it because it gives me a lot of joy I don't do it
+because I have to do it I don't do it because you know I need to eat or
+something I just do it for the fun of it and I think Nostr development should
+be like that for the most part I think that's something to strive for at least
+yeah so that's enough good morning thoughts for now I think so yeah again I'm
+gonna leave it at that
