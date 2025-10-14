@@ -33,10 +33,9 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
     <!-- Theme Detection Script (runs before page render to prevent flash) -->
     <script is:inline>
       (function() {
-        const saved = localStorage.getItem('theme');
+        // Initialize from OS preference at first paint; no persistence
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved ? saved === 'dark' : prefersDark;
-        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('dark', prefersDark);
       })();
     </script>
   </head>
@@ -85,11 +84,15 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
 
       /* Theme application utility used by both OS changes and manual toggle */
       function applyTheme(isDark: boolean) {
-        document.documentElement.classList.toggle('dark', isDark);
+        const root = document.documentElement;
+        root.classList.toggle('dark', isDark);
+        // Align UA rendering (scrollbars, form controls) with the selected theme
+        // so manual toggle looks identical to OS-level switching.
+        (root.style as any).colorScheme = isDark ? 'dark' : 'light';
         window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }));
       }
 
-      // React to OS-level appearance changes (always apply OS change)
+      // Keep OS changes reflected live so behavior matches system as it changes
       const media = window.matchMedia('(prefers-color-scheme: dark)');
       function handleOSChange(e: MediaQueryListEvent) {
         applyTheme((e as MediaQueryListEvent).matches);
@@ -97,7 +100,6 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
       if (typeof media.addEventListener === 'function') {
         media.addEventListener('change', handleOSChange);
       } else if (typeof media.addListener === 'function') {
-        // Safari <14
         media.addListener(handleOSChange);
       }
 
@@ -105,8 +107,6 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
       (window as any).toggleTheme = function() {
         const isDark = document.documentElement.classList.contains('dark');
         applyTheme(!isDark);
-        // Do not persist manual preference; keep OS as the source of truth
-        try { localStorage.removeItem('theme'); } catch {}
       };
     </script>
   </body>
