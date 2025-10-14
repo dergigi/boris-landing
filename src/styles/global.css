@@ -43,7 +43,7 @@ html {
   transition: background-color 0.3s ease;
 }
 
-button,
+/* Only apply gradient to explicit .gradient2 elements (not all buttons) */
 .gradient2 {
   background-color: var(--boris-orange);
   background-image: linear-gradient(315deg, var(--boris-orange) 0%, var(--boris-yellow) 74%);
