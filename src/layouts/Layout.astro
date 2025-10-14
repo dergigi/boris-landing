@@ -33,9 +33,13 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
     <!-- Theme Detection Script (runs before page render to prevent flash) -->
     <script is:inline>
       (function() {
-        // Initialize from OS preference at first paint; no persistence
+        // Initialize from OS preference at first paint for both html and body
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.classList.toggle('dark', prefersDark);
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.toggle('dark', prefersDark);
+          document.documentElement.style.setProperty('color-scheme', prefersDark ? 'dark' : 'light');
+        });
       })();
     </script>
   </head>
@@ -85,10 +89,12 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
       /* Theme application utility used by both OS changes and manual toggle */
       function applyTheme(isDark: boolean) {
         const root = document.documentElement;
+        const body = document.body;
         root.classList.toggle('dark', isDark);
+        if (body) body.classList.toggle('dark', isDark);
         // Align UA rendering (scrollbars, form controls) with the selected theme
         // so manual toggle looks identical to OS-level switching.
-        (root.style as any).colorScheme = isDark ? 'dark' : 'light';
+        root.style.setProperty('color-scheme', isDark ? 'dark' : 'light');
         window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }));
       }
 
