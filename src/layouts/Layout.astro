@@ -33,8 +33,10 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
     <!-- Theme Detection Script (runs before page render to prevent flash) -->
     <script is:inline>
       (function() {
+        const saved = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.classList.toggle('dark', prefersDark);
+        const isDark = saved ? saved === 'dark' : prefersDark;
+        document.documentElement.classList.toggle('dark', isDark);
       })();
     </script>
   </head>
@@ -87,10 +89,12 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
         window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }));
       }
 
-      // React to OS-level appearance changes
+      // React to OS-level appearance changes ONLY when no manual preference stored
       const media = window.matchMedia('(prefers-color-scheme: dark)');
       function handleOSChange(e: MediaQueryListEvent) {
-        applyTheme((e as MediaQueryListEvent).matches);
+        if (!localStorage.getItem('theme')) {
+          applyTheme((e as MediaQueryListEvent).matches);
+        }
       }
       if (typeof media.addEventListener === 'function') {
         media.addEventListener('change', handleOSChange);
@@ -102,7 +106,9 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
       // Manual toggle: identical effect to OS change
       (window as any).toggleTheme = function() {
         const isDark = document.documentElement.classList.contains('dark');
-        applyTheme(!isDark);
+        const next = !isDark;
+        applyTheme(next);
+        localStorage.setItem('theme', next ? 'dark' : 'light');
       };
     </script>
   </body>
