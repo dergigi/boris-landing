@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Boris - Your Reading Companion', description = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="gradient leading-relaxed tracking-wide flex flex-col">
+    <slot />
+    
+    <script>
+      /* Toggle dropdown list */
+      /* https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8 */
+
+      const navMenuDiv = document.getElementById("nav-content");
+      const navMenu = document.getElementById("nav-toggle");
+
+      document.onclick = check;
+      function check(e: MouseEvent) {
+        const target = e?.target as HTMLElement;
+
+        // Nav Menu
+        if (navMenuDiv && navMenu) {
+          if (!checkParent(target, navMenuDiv)) {
+            // click NOT on the menu
+            if (checkParent(target, navMenu)) {
+              // click on the link
+              if (navMenuDiv.classList.contains("hidden")) {
+                navMenuDiv.classList.remove("hidden");
+              } else {
+                navMenuDiv.classList.add("hidden");
+              }
+            } else {
+              // click both outside link and outside menu, hide menu
+              navMenuDiv.classList.add("hidden");
+            }
+          }
+        }
+      }
+      
+      function checkParent(t: HTMLElement | null, elm: HTMLElement): boolean {
+        while (t?.parentNode) {
+          if (t == elm) {
+            return true;
+          }
+          t = t.parentNode as HTMLElement;
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>
+
