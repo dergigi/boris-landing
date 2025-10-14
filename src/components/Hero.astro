@@ -30,32 +30,9 @@
 
   <div class="flex items-center w-full mx-auto content-end">
     <div class="w-full m-6 md:px-0 md:m-12">
-      <img id="hero-light" src="/screenshot.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full dark:hidden" />
-      <img id="hero-dark" src="/screenshot-dark.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full hidden dark:block" />
+      <img src="/screenshot.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full dark:hidden" />
+      <img src="/screenshot-dark.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full hidden dark:block" />
     </div>
   </div>
-
-  <script>
-    // Ensure images respond immediately to theme toggle (class changes happen, but
-    // some browsers cache state in SSR). Listen for our custom themechange event.
-    function syncHeroScreenshot() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains('dark');
-      const lightImg = document.getElementById('hero-light');
-      const darkImg = document.getElementById('hero-dark');
-      if (!lightImg || !darkImg) return;
-      if (isDark) {
-        lightImg.classList.add('hidden');
-        darkImg.classList.remove('hidden');
-      } else {
-        lightImg.classList.remove('hidden');
-        darkImg.classList.add('hidden');
-      }
-    }
-
-    // Sync on load and when theme is toggled
-    syncHeroScreenshot();
-    window.addEventListener('themechange', syncHeroScreenshot);
-  </script>
 </div>
 
