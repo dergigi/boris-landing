@@ -89,13 +89,15 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
         const html = document.documentElement;
         const isDark = html.classList.contains('dark');
         
-        if (isDark) {
-          html.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
+        const nextTheme = isDark ? 'light' : 'dark';
+        if (nextTheme === 'dark') {
           html.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
         }
+        localStorage.setItem('theme', nextTheme);
+        // Notify listeners (e.g., components that react to theme changes)
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
       };
     </script>
   </body>
