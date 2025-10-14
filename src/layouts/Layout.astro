@@ -33,11 +33,8 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
     <!-- Theme Detection Script (runs before page render to prevent flash) -->
     <script is:inline>
       (function() {
-        const theme = localStorage.getItem('theme') || 
-                     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', prefersDark);
       })();
     </script>
   </head>
@@ -84,20 +81,28 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
         return false;
       }
 
-      /* Theme Toggling */
+      /* Theme application utility used by both OS changes and manual toggle */
+      function applyTheme(isDark: boolean) {
+        document.documentElement.classList.toggle('dark', isDark);
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }));
+      }
+
+      // React to OS-level appearance changes
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      function handleOSChange(e: MediaQueryListEvent) {
+        applyTheme((e as MediaQueryListEvent).matches);
+      }
+      if (typeof media.addEventListener === 'function') {
+        media.addEventListener('change', handleOSChange);
+      } else if (typeof media.addListener === 'function') {
+        // Safari <14
+        media.addListener(handleOSChange);
+      }
+
+      // Manual toggle: identical effect to OS change
       (window as any).toggleTheme = function() {
-        const html = document.documentElement;
-        const isDark = html.classList.contains('dark');
-        
-        const nextTheme = isDark ? 'light' : 'dark';
-        if (nextTheme === 'dark') {
-          html.classList.add('dark');
-        } else {
-          html.classList.remove('dark');
-        }
-        localStorage.setItem('theme', nextTheme);
-        // Notify listeners (e.g., components that react to theme changes)
-        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
+        const isDark = document.documentElement.classList.contains('dark');
+        applyTheme(!isDark);
       };
     </script>
   </body>
