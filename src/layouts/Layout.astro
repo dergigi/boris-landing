@@ -89,12 +89,10 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
         window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }));
       }
 
-      // React to OS-level appearance changes ONLY when no manual preference stored
+      // React to OS-level appearance changes (always apply OS change)
       const media = window.matchMedia('(prefers-color-scheme: dark)');
       function handleOSChange(e: MediaQueryListEvent) {
-        if (!localStorage.getItem('theme')) {
-          applyTheme((e as MediaQueryListEvent).matches);
-        }
+        applyTheme((e as MediaQueryListEvent).matches);
       }
       if (typeof media.addEventListener === 'function') {
         media.addEventListener('change', handleOSChange);
@@ -106,9 +104,9 @@ const { title = 'Boris - Bookmarks and Other Stuff Read in Style', description =
       // Manual toggle: identical effect to OS change
       (window as any).toggleTheme = function() {
         const isDark = document.documentElement.classList.contains('dark');
-        const next = !isDark;
-        applyTheme(next);
-        localStorage.setItem('theme', next ? 'dark' : 'light');
+        applyTheme(!isDark);
+        // Do not persist manual preference; keep OS as the source of truth
+        try { localStorage.removeItem('theme'); } catch {}
       };
     </script>
   </body>
