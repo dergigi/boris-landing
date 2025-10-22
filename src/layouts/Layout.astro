@@ -116,8 +116,6 @@ const {
       }
       if (typeof media.addEventListener === 'function') {
         media.addEventListener('change', handleOSChange);
-      } else if (typeof media.addListener === 'function') {
-        media.addListener(handleOSChange);
       }
     </script>
   </body>
