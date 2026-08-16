@@ -1,5 +1,7 @@
 ---
 // CTA section
+
+import { ZAPSTORE_ANDROID_URL } from '../config/links';
 ---
 
 <section class="gradient w-full mx-auto text-center pt-6 pb-12">
@@ -18,11 +20,20 @@
     You could be <mark class="bg-yellow-300 dark:bg-yellow-500 px-1 text-gray-900">highlighting stuff!</mark>
   </h3>
 
-  <a
-    href="https://read.withboris.com"
-    class="inline-block mx-auto lg:mx-0 hover:underline bg-white dark:bg-zinc-700 text-gray-800 dark:text-gray-100 font-bold rounded my-6 py-4 px-8 shadow-lg"
-  >
-    Read with Boris
-  </a>
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 my-6">
+    <a
+      href="https://read.withboris.com"
+      class="inline-block hover:underline bg-white dark:bg-zinc-700 text-gray-800 dark:text-gray-100 font-bold rounded py-4 px-8 shadow-lg w-56 text-center"
+    >
+      Read with Boris
+    </a>
+    <a
+      href={ZAPSTORE_ANDROID_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block hover:underline bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 font-bold rounded py-4 px-8 shadow-lg w-56 text-center"
+    >
+      <i class="fa-solid fa-mobile-screen-button mr-2"></i>Get Android App
+    </a>
+  </div>
 </section>
-
