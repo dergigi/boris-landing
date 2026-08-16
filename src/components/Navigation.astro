@@ -1,5 +1,7 @@
 ---
 // Navigation component
+
+import { ZAPSTORE_ANDROID_URL } from '../config/links';
 ---
 
 <nav id="header" class="w-full z-30 top-0 py-1 lg:py-6">
@@ -57,8 +59,16 @@
             >Zaps</a
           >
         </li>
+        <li class="mr-3">
+          <a
+            class="inline-block text-black dark:text-gray-200 no-underline hover:text-gray-800 dark:hover:text-white hover:text-underline py-2 px-4"
+            href={ZAPSTORE_ANDROID_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            >Android</a
+          >
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-

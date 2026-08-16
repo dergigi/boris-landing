@@ -1,5 +1,7 @@
 ---
 // Hero component
+
+import { ZAPSTORE_ANDROID_URL } from '../config/links';
 ---
 
 <div class="container mx-auto h-screen">
@@ -15,17 +17,27 @@
       I'm a nostr-native app designed for reading and <span class="bg-yellow-300 dark:bg-yellow-500 px-1 text-gray-900">highlighting</span>.
     </p>
 
-    <a
-      href="https://read.withboris.com"
-      class="inline-block mx-auto lg:mx-0 hover:underline gradient2 text-gray-800 dark:text-gray-900 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48 text-center"
-    >
-      Start Reading
-    </a>
-    <a
-      href="https://github.com/dergigi/boris"
-      class="inline-block mx-auto lg:mx-0 hover:underline bg-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-extrabold my-2 md:my-6 py-2 lg:py-4 px-8"
-      ><i class="fa-brands fa-github mr-2"></i>GitHub</a
-    >
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 my-2 md:my-6">
+      <a
+        href="https://read.withboris.com"
+        class="inline-block hover:underline gradient2 text-gray-800 dark:text-gray-900 font-extrabold rounded py-4 px-8 shadow-lg w-56 text-center"
+      >
+        Start Reading
+      </a>
+      <a
+        href={ZAPSTORE_ANDROID_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block hover:underline bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 font-extrabold rounded py-4 px-8 shadow-lg w-56 text-center"
+      >
+        <i class="fa-solid fa-mobile-screen-button mr-2"></i>Android App
+      </a>
+      <a
+        href="https://github.com/dergigi/boris"
+        class="inline-block hover:underline bg-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-extrabold py-2 lg:py-4 px-8"
+        ><i class="fa-brands fa-github mr-2"></i>GitHub</a
+      >
+    </div>
   </div>
 
   <div class="flex items-center w-full mx-auto content-end">
@@ -35,4 +47,3 @@
     </div>
   </div>
 </div>
-
