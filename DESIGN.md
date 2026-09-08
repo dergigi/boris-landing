@@ -296,6 +296,11 @@ Features, FAQ, and tiers share one pattern: `border-t` on the list, `border-b` o
 - **Strip:** `aspect-[2/3]` frames with `fade-bottom`, five Android screens, lazy-loaded.
 - Every screenshot ships from `public/*.webp` with a `.webp.json` provenance sidecar and descriptive alt text.
 
+### Feature Illustrations
+- The undraw-style SVGs in `public/*.svg` sit above each feature title at `h-36`, left-aligned, decorative (`alt=""`), lazy.
+- Idle state is `grayscale`, so their purple and pink stay out of the page's chroma; hovering the row (`group-hover:grayscale-0`, 300ms filter transition) releases the color.
+- Dark scheme adds `invert hue-rotate-180`, which lifts the dark linework to light and keeps the purple recognizably purple on hover.
+
 ### Highlight Marks (signature)
 Three utilities, `mark-mine`, `mark-friends`, `mark-nostrverse`, each a `linear-gradient(to top, edge 0 2px, band 2px)` painted as `background-image` at `100% 100%`, ink text, 2px corners, cloned across line breaks. The legend is a 12px square (`h-3 w-3`, 3px corner) carrying the same utility beside a lowercase label in ink-2 at 0.875rem.
 
