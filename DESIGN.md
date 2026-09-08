@@ -26,6 +26,10 @@ colors:
   mark-friends-edge-dark: "#fb923c"
   mark-nostrverse-dark: "color-mix(in srgb, #c084fc 38%, transparent)"
   mark-nostrverse-edge-dark: "#c084fc"
+  device-bezel: "#0c0c0e"
+  device-camera-ring: "#2a2a30"
+  device-bar: "#f3edf8"
+  device-bar-dark: "#18181a"
 typography:
   display:
     fontSize: "4.25rem"
@@ -108,6 +112,8 @@ rounded:
   mark: "2px"
   swatch: "3px"
   lg: "8px"
+  device: "2.5rem"
+  device-screen: "1.9rem"
 spacing:
   sm: "8px"
   md: "12px"
