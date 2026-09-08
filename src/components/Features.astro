@@ -129,7 +129,7 @@ const shots = {
           <Fragment
             set:html={inlineIllustration(
               f.image,
-              'mx-auto h-56 w-auto max-w-full grayscale transition-[filter] duration-300 ease-out md:h-72 dark:invert dark:hue-rotate-180',
+              'mx-auto h-56 w-auto max-w-full grayscale md:h-72 dark:invert dark:hue-rotate-180',
             )}
           />
         </li>
@@ -164,26 +164,36 @@ const shots = {
 </section>
 
 <script>
-  // Draw each illustration once it scrolls into view, and keep it in color
-  // only while it stays there. Without JS the shapes are simply visible and
-  // in color, since `illo-ready` is what hides them and grays them.
+  // Color tracks the viewport midline: gray at the edges, full color in the
+  // middle fifth, a long ease between. Drawing starts the first time one
+  // enters that falloff. Without JS they stay visible and in color.
   const illos = document.querySelectorAll<SVGElement>('svg.illo');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-inview', 'is-lit');
-          } else {
-            e.target.classList.remove('is-lit');
-          }
-        }
-      },
-      { threshold: 0.4 },
-    );
+  for (const svg of illos) svg.classList.add('illo-ready');
+
+  let ticking = false;
+  const tint = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    const mid = vh / 2;
+    const inner = vh * 0.1;
+    const outer = vh * 0.38;
+    const span = outer - inner;
     for (const svg of illos) {
-      svg.classList.add('illo-ready');
-      io.observe(svg);
+      const r = svg.getBoundingClientRect();
+      const dist = Math.abs(r.top + r.height / 2 - mid);
+      let t = (dist - inner) / span;
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      t = t * t * (3 - 2 * t);
+      svg.style.setProperty('--illo-gray', t.toFixed(3));
+      if (t < 1) svg.classList.add('is-inview');
     }
-  }
+  };
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(tint);
+  };
+  tint();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
 </script>

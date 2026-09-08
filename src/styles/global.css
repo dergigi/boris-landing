@@ -253,9 +253,12 @@
       calc(var(--i) / var(--n) * 1.4s),
       calc(var(--i) / var(--n) * 1.4s + 0.5s);
   }
-  /* Color while on screen. Without `illo-ready` (no JS) they stay in color. */
-  &:not(.illo-ready),
-  &.is-lit {
+  /* `--illo-gray` is 1 at the viewport edges and 0 on the midline. */
+  &.illo-ready {
+    --illo-gray: 1;
+    --tw-grayscale: grayscale(calc(var(--illo-gray) * 100%));
+  }
+  &:not(.illo-ready) {
     --tw-grayscale: grayscale(0);
   }
   @media (prefers-reduced-motion: reduce) {
