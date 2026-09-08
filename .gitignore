@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# impeccable (binary is downloaded on first run; local state stays local)
+.cursor/skills/impeccable/scripts/bin/
+.impeccable/questions/
+.impeccable/config.local.json
+.impeccable/review/
+.impeccable/mocks/
