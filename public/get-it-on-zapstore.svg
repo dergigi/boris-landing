@@ -44,60 +44,64 @@
      id="defs1"><style
        id="theme-colors"><![CDATA[
       #path4 {
-        fill: #fffff0 !important;
+        fill: #1c1917 !important;
       }
       #path6 {
-        fill: #d8d4bf !important;
+        fill: #57534e !important;
       }
       #path8,
       #path10,
       #path12,
       #path14,
       #path16,
+      #path22 {
+        fill: #fffff0 !important;
+        stroke: #fffff0 !important;
+      }
       #path18,
-      #path22,
       #text37 {
-        fill: #1c1917 !important;
-        stroke: #1c1917 !important;
+        fill: #fffff0 !important;
       }
       #path20 {
         fill: none !important;
-        stroke: #1c1917 !important;
+        stroke: #fffff0 !important;
       }
       #rect1 {
         fill: #f97316 !important;
       }
       #path9-3 {
-        fill: #fffff0 !important;
+        fill: #1c1917 !important;
       }
 
       @media (prefers-color-scheme: dark) {
         #path4 {
-          fill: #1f1f23 !important;
+          fill: #fffff0 !important;
         }
         #path6 {
-          fill: #57534e !important;
+          fill: #d8d4bf !important;
         }
         #path8,
         #path10,
         #path12,
         #path14,
         #path16,
+        #path22 {
+          fill: #1c1917 !important;
+          stroke: #1c1917 !important;
+        }
         #path18,
-        #path22,
         #text37 {
-          fill: #f4f4f5 !important;
-          stroke: #f4f4f5 !important;
+          fill: #1c1917 !important;
         }
         #path20 {
           fill: none !important;
-          stroke: #f4f4f5 !important;
+          stroke: #1c1917 !important;
         }
         #rect1 {
           fill: #fb923c !important;
         }
         #path9-3 {
-          fill: #18181b !important;
+          fill: #1c1917 !important;
         }
       }
     ]]></style><linearGradient
