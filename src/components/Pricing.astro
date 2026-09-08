@@ -1,27 +1,23 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { ZAP_URL } from '../config/links';
 
 const tiers = [
   {
     name: 'Free',
     amount: '0 sats',
     perks: ['All the features', 'Open-source forever', 'Full freedom'],
-    cta: 'Hell yeah!',
     featured: false,
   },
   {
     name: 'Support Boris',
     amount: '2.1k sats',
     perks: ['Still all the features', 'Feel great about it', 'Show up as a supporter', 'Marvel at your avatar'],
-    cta: "Let's gooo!",
     featured: true,
   },
   {
     name: 'Legend',
     amount: '69,420 sats',
     perks: ['Fantastic numerology', 'Massive bragging rights', 'Flames around your avatar'],
-    cta: 'I love it.',
     featured: false,
   },
 ];
@@ -46,17 +42,6 @@ const tiers = [
           <ul class="mt-6 space-y-2 text-[15px] leading-relaxed text-ink-2">
             {t.perks.map((p) => <li>{p}</li>)}
           </ul>
-          <a
-            href={ZAP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class:list={[
-              'mt-8 inline-flex h-11 w-fit items-center rounded-lg px-5 text-sm font-medium no-underline transition-opacity duration-150 hover:opacity-85',
-              t.featured ? 'bg-ink text-paper' : 'border border-ink/25 text-ink',
-            ]}
-          >
-            {t.cta}
-          </a>
         </li>
       ))}
     </ul>
