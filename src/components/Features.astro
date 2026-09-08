@@ -1,189 +1,109 @@
 ---
-// Features section with SVG illustrations
+import SectionHeading from './SectionHeading.astro';
+
+const link = (href: string, text: string) =>
+  `<a href="${href}" target="_blank" rel="noopener noreferrer" class="link-inline">${text}</a>`;
+
+const features = [
+  {
+    title: 'Read Anywhere',
+    body: [
+      'Boris is a native Android app, built for the phone you already carry. Paste a URL, share a link from any app, or open a nostr article, and read it in peace.',
+      'Boris also runs in any browser on desktop or tablet, and the web version installs as a PWA.',
+    ],
+  },
+  {
+    title: 'Distraction-Free',
+    body: [
+      'Boris aims to be a calm reader app with clean typography, beautiful design, and a focus on readability.',
+      'Boris does not and will never have ads, trackers, paywalls, subscriptions, or any other distractions.',
+    ],
+  },
+  {
+    title: 'Airplane Mode',
+    body: [
+      'Boris is offline-first by design. With a local relay you can read, create highlights, and browse your library without a network. When in <em>Airplane Mode</em> or offline, Boris will store changes locally and sync later.',
+      `Run ${link('https://github.com/greenart7c3/Citrine', 'Citrine')} on your phone or ${link('https://github.com/CodyTseng/nostr-relay-tray', 'nostr-relay-tray')} on your desktop to use Boris offline.`,
+    ],
+  },
+  {
+    title: 'Social Highlights',
+    body: [
+      'Discover highlights from your friends and others, as well as long-form content from the nostrverse.',
+      '"Swarm highlights" help you discover the most interesting passages, while the explore page will show you nostr-native long-form content.',
+    ],
+  },
+  {
+    title: 'Lists, Libraries, and More',
+    body: [
+      'Boris turns your bookmarks into a focused reading queue. It supports public and private bookmarks, RSS feeds, as well as regular web URLs.',
+      'Keep track of reading progress, jump to specific passages, and mark articles (and other stuff) as read.',
+    ],
+  },
+  {
+    title: 'Zap Splits',
+    body: [
+      'When creating highlights, Boris automatically sets up zap splits so that value flows to authors and curators alike.',
+      'You have full control over all zap splits. You can change the splits as you wish or use one of the predefined presets.',
+    ],
+  },
+  {
+    title: 'Comforting Colors',
+    body: [
+      'Read during the day or late at night. Boris has multiple light and dark themes tuned for long reads. Choose fonts and sizes, highlight styles, and pick colors that fit your personal choice.',
+    ],
+  },
+  {
+    title: 'Peace of Mind',
+    body: [
+      'No signups, no accounts, no lock-ins. Your data lives on Nostr, and Boris renders it locally through an opinionated lens. Boris never holds your key; Amber or a bunker signs for you.',
+      'You will never be locked out, no matter what. Boris will never rugpull you, because it can\'t rugpull you. You are in full control of your data. All the highlights, bookmarks, and reading metadata you create will forever be your own.',
+    ],
+  },
+  {
+    title: 'Free as in Freedom',
+    body: [
+      'Boris is free and open-source and always will be. You can do with it what you want. Fork it, modify it, contribute to it, or just use it as is.',
+      `Boris is free as in beer too, but you can send me sats if you appreciate my work. ${link('https://dergigi.com/support/', '#v4v')}`,
+    ],
+  },
+];
+
+const shots = [
+  { src: '/android-read-1.webp', alt: 'Reading an essay in light mode, with title, reading time, and highlight count' },
+  { src: '/android-1-home.webp', alt: 'Home screen in dark mode: recently highlighted by others, most highlighted this week, random unreads' },
+  { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
+  { src: '/android-reader-art.webp', alt: 'An article with cover art in dark mode' },
+  { src: '/android-2-library.webp', alt: 'Your library: private, public, and web bookmarks in one reading list' },
+];
 ---
 
-<section id="features" class="bg-gray-50 dark:bg-zinc-900 border-b dark:border-zinc-800 py-8">
-  <div class="container max-w-5xl mx-auto m-8">
-    <h2
-      class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800 dark:text-gray-100"
+<section id="features" class="scroll-mt-16 border-b border-rule">
+  <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+    <SectionHeading title="Features">
+      Everything a reading app needs, and none of the things that make reading worse.
+    </SectionHeading>
+
+    <ul class="grid gap-x-10 border-t border-rule sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((f) => (
+        <li class="border-b border-rule py-8 lg:pr-4">
+          <h3 class="font-serif-reading text-2xl font-semibold tracking-tight">{f.title}</h3>
+          <div class="mt-3 space-y-3 text-[15px] leading-relaxed text-ink-2">
+            {f.body.map((p) => <p set:html={p} />)}
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <ul
+      class="-mx-5 mt-16 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0"
+      aria-label="Screens from the Android app"
     >
-      Features
-    </h2>
-    <div class="w-full mb-4">
-      <div
-        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
-      ></div>
-    </div>
-
-    <div class="flex flex-wrap">
-      <div class="w-5/6 sm:w-1/2 p-6">
-        <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-          Read Anywhere
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Boris works on any device. Whether you prefer to read on desktop, mobile, or tablet, Boris is there for you.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          If you install boris as a PWA, you can read and highlight on your phone or tablet as if it was a native app.
-        </p>
-      </div>
-      <div class="w-full sm:w-1/2 p-6">
-        <img src="/read-anywhere.svg" alt="Read Anywhere" class="w-full sm:h-64 mx-auto" />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <img src="/distraction-free.svg" alt="Distraction-Free" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <div class="align-middle">
-          <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-            Distraction-Free
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            Boris aims to be a calm reader app with clean typography, beautiful design, and a focus on readability.
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            Boris does not and will never have ads, trackers, paywalls, subscriptions, or any other distractions.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap">
-      <div class="w-5/6 sm:w-1/2 p-6">
-        <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-          Airplane Mode
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Boris is offline‑first by design. With a local relay you can read,
-          create highlights, and browse your library without a network. When in
-          <em>Airplane Mode</em> or offline, Boris will store changes locally and sync later.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Run <a href="https://github.com/greenart7c3/Citrine" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Citrine</a> on your phone or <a href="https://github.com/CodyTseng/nostr-relay-tray" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">nostr-relay-tray</a> on your desktop to use Boris offline.
-        </p>
-      </div>
-      <div class="w-full sm:w-1/2 p-6">
-        <img src="/airplane-mode.svg" alt="Airplane Mode" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <img src="/swarm-highlights.svg" alt="Social Highlights" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <div class="align-middle">
-          <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-            Social Highlights
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            Discover highlights from your friends and others, as well as long-form content from the nostrverse.
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            "Swarm highlights" help you discover the most interesting passages, while the explore page will show you nostr-native long-form content.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap">
-      <div class="w-5/6 sm:w-1/2 p-6">
-        <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-          Lists, Libraries, and More
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Boris turns your bookmarks into a focused reading queue.
-          It supports public and private bookmarks, as well as regular web URLs.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Keep track of reading progress, jump to specific passages, and mark articles (and other stuff) as read.
-        </p>
-      </div>
-      <div class="w-full sm:w-1/2 p-6">
-        <img src="/reading-list.svg" alt="Reading List" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <img src="/zap-splits.svg" alt="Zap Splits" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <div class="align-middle">
-          <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-            Zap Splits
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            When creating highlights, Boris automatically sets up zap splits so that value flows to authors and curators alike.
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            You have full control over all zap splits. You can change the splits as you wish or use one of the predefined presets.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap">
-      <div class="w-5/6 sm:w-1/2 p-6">
-        <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-          Comforting Colors
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Read during the day or late at night. 
-          Boris has multiple light and dark themes tuned for long reads.
-          Choose fonts and sizes, highlight styles, and pick colors that fit your personal choice.
-        </p>
-      </div>
-      <div class="w-full sm:w-1/2 p-6">
-        <img src="/comforting-colors.svg" alt="Comforting Colors" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <img src="/peace-of-mind.svg" alt="Peace of Mind" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-      <div class="w-full sm:w-1/2 p-6 mt-6">
-        <div class="align-middle">
-          <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-            Peace of Mind
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            No signups, no accounts, no lock-ins. Your data lives on Nostr, and
-            Boris renders it locally through an opinionated lens.
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
-            You will never be locked out, no matter what. Boris will never
-            rugpull you, because it can't rugpull you. You are in full control
-            of your data. All the highlights, bookmarks, and reading metadata
-            you create will forever be your own.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap">
-      <div class="w-5/6 sm:w-1/2 p-6">
-        <h3 class="text-3xl text-gray-800 dark:text-gray-100 font-bold leading-none mb-3">
-          Free as in Freedom
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Boris is free and open‑source and always will be.
-          You can do with it what you want.
-          Fork it, modify it, contribute to it, or just use it as is.
-        </p>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Boris is free as in beer too, but you can send me sats if you appreciate my work.
-          <a href="https://dergigi.com/support/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">#v4v</a>
-        </p>
-      </div>
-      <div class="w-full sm:w-1/2 p-6">
-        <img src="/free-forever.svg" alt="Free Forever" class="w-5/6 sm:h-64 mx-auto" />
-      </div>
-    </div>
+      {shots.map((s) => (
+        <li class="phone aspect-[3/4] w-[62vw] shrink-0 snap-start sm:w-64 lg:w-auto">
+          <img src={s.src} alt={s.alt} width="720" height="1462" loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
-
