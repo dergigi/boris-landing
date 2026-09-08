@@ -4,8 +4,10 @@ import { ANDROID_RELEASES_URL, WEB_APP_URL, ZAPSTORE_ANDROID_URL } from '../conf
 
 interface Props {
   class?: string;
+  size?: 'lg' | 'md';
 }
-const { class: className = '' } = Astro.props;
+const { class: className = '', size = 'lg' } = Astro.props;
+const badgeSize = size === 'lg' ? 'h-[4.5rem] sm:h-20' : 'h-16 sm:h-[4.5rem]';
 ---
 
 <div class:list={['flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6', className]}>
@@ -15,7 +17,7 @@ const { class: className = '' } = Astro.props;
     rel="noopener noreferrer"
     class="inline-block w-fit rounded-lg transition-opacity duration-150 hover:opacity-85"
   >
-    <img src="/get-it-on-zapstore.svg" alt="Get it on Zapstore" width="180" height="53" class="block h-20 w-auto sm:h-24" />
+    <img src="/get-it-on-zapstore.svg" alt="Get it on Zapstore" width="180" height="53" class:list={['block w-auto', badgeSize]} />
   </a>
   <p class="text-sm leading-relaxed opacity-75">
     Also as an <a href={ANDROID_RELEASES_URL} target="_blank" rel="noopener noreferrer" class="link-inline">APK on GitHub</a>,<br class="hidden sm:block" />
