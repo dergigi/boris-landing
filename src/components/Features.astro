@@ -129,7 +129,7 @@ const shots = {
           <Fragment
             set:html={inlineIllustration(
               f.image,
-              'mx-auto h-56 w-auto max-w-full grayscale transition-[filter] duration-300 ease-out group-hover:grayscale-0 md:h-72 dark:invert dark:hue-rotate-180',
+              'mx-auto h-56 w-auto max-w-full transition-[filter] duration-300 ease-out md:h-72 dark:invert dark:hue-rotate-180 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0',
             )}
           />
         </li>

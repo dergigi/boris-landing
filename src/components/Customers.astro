@@ -30,7 +30,7 @@ const giants = [
               width="28"
               height="28"
               loading="lazy"
-              class:list={['h-7 w-7 rounded-md object-contain grayscale transition-[filter] duration-200 group-hover:grayscale-0', g.imgDark && 'dark:hidden']}
+              class:list={['h-7 w-7 rounded-md object-contain transition-[filter] duration-200 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0', g.imgDark && 'dark:hidden']}
             />
             {g.imgDark && (
               <img
@@ -39,7 +39,7 @@ const giants = [
                 width="28"
                 height="28"
                 loading="lazy"
-                class="hidden h-7 w-7 rounded-md object-contain grayscale transition-[filter] duration-200 group-hover:grayscale-0 dark:block"
+                class="hidden h-7 w-7 rounded-md object-contain transition-[filter] duration-200 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0 dark:block"
               />
             )}
             {g.label}
