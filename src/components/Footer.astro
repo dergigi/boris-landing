@@ -1,5 +1,5 @@
 ---
-import { GITHUB_URL, WEB_APP_URL, ZAPSTORE_ANDROID_URL } from '../config/links';
+import { BORIS_NPUB, GITHUB_URL, NJUMP_PROFILE_URL, NOSTR_PROFILE_URI, WEB_APP_URL, ZAPSTORE_ANDROID_URL } from '../config/links';
 
 const groups = [
   {
@@ -29,9 +29,9 @@ const groups = [
   {
     heading: 'Social',
     links: [
-      { href: 'https://njump.to/npub19802see0gnk3vjlus0dnmfdagusqrtmsxpl5yfmkwn9uvnfnqylqduhr0x', label: 'Njump', external: true },
-      { href: 'nostr:npub19802see0gnk3vjlus0dnmfdagusqrtmsxpl5yfmkwn9uvnfnqylqduhr0x', label: 'Nostr' },
-      { href: 'https://read.withboris.com/p/npub19802see0gnk3vjlus0dnmfdagusqrtmsxpl5yfmkwn9uvnfnqylqduhr0x', label: 'Blog', external: true },
+      { href: NJUMP_PROFILE_URL, label: 'Njump', external: true },
+      { href: NOSTR_PROFILE_URI, label: 'Nostr' },
+      { href: `${WEB_APP_URL}/p/${BORIS_NPUB}`, label: 'Blog', external: true },
     ],
   },
   {

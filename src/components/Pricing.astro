@@ -1,5 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import { LIGHTNING_ADDRESS, NOSTR_PROFILE_URI } from '../config/links';
 
 const tiers = [
   {
@@ -24,7 +25,7 @@ const tiers = [
 ---
 
 <section id="zaps" class="scroll-mt-16 border-b border-rule">
-  <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+  <div class="mx-auto flex min-h-svh w-full max-w-6xl flex-col justify-center px-5 py-16 sm:px-8 sm:py-24">
     <SectionHeading title="Zaps">
       <Fragment slot="title"><s class="text-ink-3 decoration-1">Pricing</s> Zaps</Fragment>
       Boris is a labor of love and is developed by
@@ -45,5 +46,18 @@ const tiers = [
         </li>
       ))}
     </ul>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-rule pt-10 sm:mt-14 sm:flex-row sm:items-center sm:gap-6">
+      <a
+        href={NOSTR_PROFILE_URI}
+        class="inline-flex h-12 w-fit items-center rounded-lg bg-ink px-6 text-base font-medium text-paper no-underline transition-opacity duration-150 hover:opacity-85"
+      >
+        Zap Boris
+      </a>
+      <p class="text-sm leading-relaxed text-ink-2">
+        Opens the Boris profile in your nostr client.<br class="hidden sm:block" />
+        No client at hand? Send sats to <a href={`lightning:${LIGHTNING_ADDRESS}`} class="link-inline">{LIGHTNING_ADDRESS}</a>.
+      </p>
+    </div>
   </div>
 </section>

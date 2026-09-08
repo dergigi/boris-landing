@@ -225,7 +225,8 @@ A two-tone paper-and-ink page with three highlighter hues that never leave the t
 
 ### Hierarchy
 - **Display** (serif 600, 2.5rem / 3.75rem / 4.25rem at base / sm / lg, line-height 1.05, tracking -0.02em): the hero greeting only. The CTA headline uses the same voice one step down (2.25rem / 3rem / 3.75rem, line-height 1.05).
-- **Headline** (serif 600, 1.875rem / 2.25rem, tracking -0.025em): section h2 in `SectionHeading`, sitting on a baseline with an optional Inter intro of at most `max-w-md`.
+- **Section title** (`SectionHeading`): the same display ramp as the hero h1 (2.5rem / 3.75rem / 4.25rem, serif 600, leading 1.05, tracking -0.02em), sitting on a baseline with an optional Inter intro (`text-base sm:text-lg`) of at most `max-w-md`. Every screen opens like the first one did.
+- **Headline** (serif 600, 1.875rem / 2.25rem, tracking -0.025em): reserved for sub-headings that need to outrank a title but stay under the section title.
 - **Passage** (serif 400, 1.25rem / 1.75rem, line-height 1.55): quoted reading text that carries marks. The CTA's marked line uses 1.5rem / 1.875rem.
 - **Title** (serif 600, 1.5rem, tracking -0.025em): feature titles, FAQ questions, Zaps tier names. Always followed by body at `mt-3`.
 - **Body lead** (Inter 400, 1.125rem / 1.25rem, line-height 1.625, ink-2, `max-w-xl`): the hero subline.
@@ -244,7 +245,7 @@ A two-tone paper-and-ink page with three highlighter hues that never leave the t
 
 One column of content inside a `max-w-6xl` (72rem) container with `px-5` (20px) gutters on mobile and `sm:px-8` (32px) from 640px up. The container is the same in the nav, every section, and the footer, so all left edges align.
 
-Sections are stacked and separated by a 1px `rule` on their bottom edge (`border-b border-rule`); there is no background change between sections. Vertical padding is `py-16` (64px) on mobile and `sm:py-24` (96px) from 640px. The hero uses `pt-14 / sm:pt-20 / lg:pt-24` and no bottom padding on its image column so the phone can be cut by the section rule. The credits section is shorter (`py-12 / sm:py-16`), as is the footer (`py-14 / sm:py-16`).
+Each section is a screen: the hero grid is `min-h-[calc(100svh-4rem)]` (viewport minus the 64px nav) with `lg:items-center`; Zaps, FAQ, and the closing CTA are `min-h-svh` with their content vertically centered (`flex flex-col justify-center`). Features is many screens tall by nature and is not clamped; the credits band stays short. Sections are stacked and separated by a 1px `rule` on their bottom edge (`border-b border-rule`); there is no background change between sections. Vertical padding is `py-16` (64px) on mobile and `sm:py-24` (96px) from 640px. The hero uses `pt-14 / sm:pt-20 / lg:pt-24` and no bottom padding on its image column so the phone can be cut by the section rule. The credits section is shorter (`py-12 / sm:py-16`), as is the footer (`py-14 / sm:py-16`).
 
 Inside a section, lists are rows: a `border-t border-rule` above the list, each item with `border-b border-rule` and `py-8` (32px). Features run 1 / 2 / 3 columns at base / sm / lg with `gap-x-10` (40px); FAQ runs 1 / 3 at base / md; Zaps runs 1 / 3 at base / sm with vertical rules (`sm:border-r`) between tiers and `sm:px-8` internal padding instead of row rules. The hero is a 12-column grid at lg: text spans 7, the phone spans 5, with `gap-x-12` (48px).
 
@@ -299,6 +300,7 @@ FAQ and tiers share one pattern: `border-t` on the list, `border-b` on each row,
 ### Phone Frame
 - **Style (`.phone`):** block, 0.5rem corners, 1px `rule` border, `paper-2` fill, `overflow: hidden`; the image covers from the top.
 - **Hero (`.device` + `.device-screen`):** an Android frame drawn in CSS: matte `#0c0c0e` bezel with 0.625rem padding and 2.5rem corners, a hairline `ink` at 18% around it, a punch-hole camera from `::before`, and a status-bar strip (2.25rem) that continues the screenshot's own top color (`#f3edf8` light, `#18181a` dark). No gloss, no side buttons, no shadow. `max-w-[20rem] / lg:max-w-[24rem]`, absolutely positioned at the top of a clipped column, cut by the section rule. Inside, `.slideshow` cross-dissolves four screens per theme (CSS only: `--d` dwell of 4s, `--i` index as negative delay, 5% fades, pauses on hover, first slide only under reduced motion). Light and dark sets swap via `dark:hidden` / `dark:block`.
+- **Zaps CTA:** below the tiers, above a `border-t` rule with `pt-10`: an `h-12` ink button ("Zap Boris") linking to `nostr:<npub>` so the visitor's own client does the zapping, plus a small Inter note with a `lightning:` fallback to the Boris lightning address. Constants live in `src/config/links.ts`.
 - **Strip (`.marquee`):** `aspect-[2/3]` frames with `fade-bottom`, sixteen Android screens across both themes, lazy-loaded. The list is rendered twice (second copy `aria-hidden`) and translates to -50% over `--marquee-duration` (6s per screen, about 40px/s), so the loop is seamless. Items space with `mr-4` rather than `gap` so both halves measure the same. The viewport edges fade via an 8% mask. Pauses on hover; under reduced motion it stands still, loses the edge mask, and scrolls by hand.
 - Every screenshot ships from `public/*.webp` with a `.webp.json` provenance sidecar and descriptive alt text.
 
