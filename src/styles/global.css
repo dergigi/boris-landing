@@ -190,6 +190,12 @@
   }
 }
 
+/* Strip frames end wherever the column width puts them, so the bottom
+   fades into the paper instead of slicing a line of text. */
+@utility fade-bottom {
+  mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+}
+
 /* Phone screenshot: a flat screen with a hairline, no device chrome. */
 @utility phone {
   display: block;

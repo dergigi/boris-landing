@@ -24,3 +24,10 @@ FORM: Popular Highlights (Kindle popular highlights / Readwise review), candidat
 Signature interaction: on load the three hero marks draw in left to right, staggered; disabled under prefers-reduced-motion. No other entrance motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+
+## Decisions recorded after finish review
+
+- Hero phone: hard crop at the section rule (the rule is the cut).
+- Feature screenshot strip: frames are 2:3 and fade into the paper at the bottom (`fade-bottom` mask) because the crop line moves with column width; a fade is the deliberate ending, not a slice through a line of text.
+- Nav and footer both carry `public/boris-logo.svg`, the brand wordmark; its purple and orange are cited chroma (user's must-survive list).
+- CTA sits on the paper ground; the only yellow is the `mark-mine` on "highlighting stuff!".
