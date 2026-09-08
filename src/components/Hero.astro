@@ -61,7 +61,7 @@ const levels = [
       </figure>
     </div>
 
-    <div class="relative h-[22rem] [clip-path:inset(0_-4rem)] sm:h-[28rem] lg:col-span-5 lg:h-auto lg:self-stretch">
+    <div class="relative h-[22rem] overflow-hidden sm:h-[28rem] lg:col-span-5 lg:h-auto lg:self-stretch">
       <div class="device absolute inset-x-0 top-0 mx-auto w-full max-w-[20rem] lg:mx-0 lg:ml-auto lg:max-w-[24rem]">
         <div class="device-screen">
           <div class="slideshow" style="--d: 4s">
@@ -93,27 +93,3 @@ const levels = [
     </div>
   </div>
 </section>
-
-<script>
-  // Tilt the phone toward the cursor. Pure CSS handles the pop; this only
-  // feeds the two angles. Nothing happens under reduced motion or on touch.
-  const device = document.querySelector<HTMLElement>('.device');
-  const fine = matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)');
-  if (device && fine.matches) {
-    const MAX = 7; // degrees
-    device.addEventListener('pointerenter', () => device.classList.remove('is-settling'));
-    device.addEventListener('pointermove', (e) => {
-      const r = device.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      // The side under the cursor comes toward you.
-      device.style.setProperty('--ry', `${(-x * MAX * 2).toFixed(2)}deg`);
-      device.style.setProperty('--rx', `${(y * MAX * 2).toFixed(2)}deg`);
-    });
-    device.addEventListener('pointerleave', () => {
-      device.classList.add('is-settling');
-      device.style.removeProperty('--rx');
-      device.style.removeProperty('--ry');
-    });
-  }
-</script>
