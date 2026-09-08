@@ -23,7 +23,7 @@ A reader where your highlights are nostr events: they travel with your npub, sho
 - Android app: home (recently highlighted, most highlighted this week, random unreads), library (bookmarks, RSS feeds), reader with cover art, Source Serif body, swarm highlight panel, on-device TTS, settings with highlight colors and airplane mode. Bottom tabs: Home, Library, Feeds, Search, You.
 - Web app: three-pane reader (bookmarks left, article center, highlights right), installable as PWA.
 - Distribution: Zapstore (primary), GitHub releases. Support via zaps to the Boris npub.
-- Site stack: Astro 5 + Tailwind 4, static, deployed on Vercel. Fonts via CDN (Inter from rsms.me). Font Awesome via CDN for icons.
+- Site stack: Astro 5 + Tailwind 4, static, deployed on Vercel. Fonts self-hosted via fontsource (Inter, Source Serif 4). No third-party requests, no icon font.
 
 ## Capabilities and Constraints
 
@@ -31,7 +31,7 @@ A reader where your highlights are nostr events: they travel with your npub, sho
 - Feature copy may be reworded where it references the web app as the primary surface (for example the PWA sentence), so it reads Android-first.
 - Web app appears as a secondary text link beside the Android CTA, not as an equal button.
 - Zapstore link is `ZAPSTORE_ANDROID_URL` in `src/config/links.ts`. GitHub releases at `https://github.com/dergigi/boris-android/releases`.
-- Dark and light follow the OS setting via a `dark` class on `<html>`; no manual toggle.
+- Dark and light follow the OS setting via `prefers-color-scheme`; no manual toggle.
 - No analytics, no tracking, no cookie banners.
 
 ## Brand Commitments
