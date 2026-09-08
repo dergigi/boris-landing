@@ -67,7 +67,7 @@
         stroke: #fffff0 !important;
       }
       #rect1 {
-        fill: #f97316 !important;
+        fill: #9333ea !important;
       }
       #path9-3 {
         fill: #1c1917 !important;
@@ -98,7 +98,7 @@
           stroke: #1c1917 !important;
         }
         #rect1 {
-          fill: #fb923c !important;
+          fill: #9333ea !important;
         }
         #path9-3 {
           fill: #1c1917 !important;
@@ -283,7 +283,7 @@
        style="display:inline"><g
          inkscape:label="Livello 1"
          id="layer1"><rect
-           style="display:inline;fill:#6161ff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+           style="display:inline;fill:#9333ea;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
            id="rect1"
            width="10.507396"
            height="10.507395"

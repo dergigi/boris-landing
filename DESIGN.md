@@ -278,7 +278,7 @@ Screenshots are hard-edged inside their frame (`object-fit: cover`, `object-posi
 - **Primary:** ink fill, paper text, `h-11 px-5` (44px / 20px) in Zaps; a compact `h-9 px-3.5` (36px / 14px) in the nav.
 - **Secondary:** transparent, ink text, 1px border at `ink/25` (25% ink). Same dimensions as primary.
 - **Hover / Focus:** hover is `opacity-85` over 150ms; focus is the global 2px ink outline with 3px offset. No color change, no lift.
-- **Zapstore badge:** the official `get-it-on-zapstore.svg` at `h-14 / sm:h-[3.75rem]` acts as the primary offer in hero and CTA. It is the only button-like element that carries brand chroma.
+- **Zapstore badge:** the official `get-it-on-zapstore.svg` at `h-14 / sm:h-[3.75rem]` acts as the primary offer in hero and CTA. It is the only button-like element that carries brand chroma. The icon square is wordmark purple (`#9333ea`) in both schemes.
 
 ### GetBoris (the offer)
 The Zapstore badge with a 0.875rem Inter line beside it (below it on mobile): "Also as an APK on GitHub, or read in the browser." Secondary paths are `link-inline` text links, never a second button. Reused verbatim in hero and CTA.
