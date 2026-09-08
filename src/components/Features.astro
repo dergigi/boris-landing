@@ -146,7 +146,15 @@ const shots = {
         {[false, true].map((copy) =>
           list.map((s) => (
             <li class="phone fade-bottom mr-5 aspect-[2/3] w-64 shrink-0 sm:w-72" aria-hidden={copy || undefined}>
-              <img src={s.src} alt={copy ? '' : s.alt} width="720" height="1462" loading="lazy" decoding="async" />
+              <a
+                href={s.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabindex={copy ? -1 : undefined}
+                class="block h-full no-underline"
+              >
+                <img src={s.src} alt={copy ? '' : s.alt} width="720" height="1462" loading="lazy" decoding="async" />
+              </a>
             </li>
           )),
         )}

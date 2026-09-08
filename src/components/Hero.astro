@@ -66,26 +66,38 @@ const levels = [
         <div class="device-screen">
           <div class="slideshow" style="--d: 4s">
             {slides.light.map((s, i) => (
-              <img
-                src={s.src}
-                width="720"
-                height="1462"
-                alt={s.alt}
+              <a
+                href={s.src}
+                target="_blank"
+                rel="noopener noreferrer"
                 class:list={['dark:hidden', i === 0 && 'slide-default']}
                 style={`--i: ${i}`}
-                fetchpriority={i === 0 ? 'high' : undefined}
-              />
+              >
+                <img
+                  src={s.src}
+                  width="720"
+                  height="1462"
+                  alt={s.alt}
+                  fetchpriority={i === 0 ? 'high' : undefined}
+                />
+              </a>
             ))}
             {slides.dark.map((s, i) => (
-              <img
-                src={s.src}
-                width="720"
-                height="1462"
-                alt={s.alt}
+              <a
+                href={s.src}
+                target="_blank"
+                rel="noopener noreferrer"
                 class:list={['hidden dark:block', i === 0 && 'slide-default']}
                 style={`--i: ${i}`}
-                fetchpriority={i === 0 ? 'high' : undefined}
-              />
+              >
+                <img
+                  src={s.src}
+                  width="720"
+                  height="1462"
+                  alt={s.alt}
+                  fetchpriority={i === 0 ? 'high' : undefined}
+                />
+              </a>
             ))}
           </div>
         </div>
