@@ -111,15 +111,15 @@ const shots = {
 
 ---
 
-<section id="features" class="scroll-mt-16 border-b border-rule">
+<section id="features" class="scroll-mt-16">
   <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
     <SectionHeading title="Features">
       Everything a reading app needs, and none of the things that make reading worse.
     </SectionHeading>
 
-    <ul class="border-t border-rule">
+    <ul>
       {features.map((f, i) => (
-        <li class="group grid items-center gap-10 border-b border-rule py-16 md:grid-cols-2 md:gap-16 md:py-24">
+        <li class="group grid items-center gap-10 py-16 first:pt-0 last:pb-0 md:grid-cols-2 md:gap-16 md:py-24 md:first:pt-0 md:last:pb-0">
           <div class:list={['max-w-md', i % 2 === 1 && 'md:order-last']}>
             <h3 class="font-serif-reading text-3xl font-semibold tracking-tight">{f.title}</h3>
             <div class="mt-5 space-y-4 text-base leading-relaxed text-ink-2">

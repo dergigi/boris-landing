@@ -24,7 +24,7 @@ const tiers = [
 ];
 ---
 
-<section id="zaps" class="scroll-mt-16 border-b border-rule">
+<section id="zaps" class="scroll-mt-16">
   <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
     <SectionHeading title="Zaps">
       <Fragment slot="title"><s class="text-ink-3 decoration-1">Pricing</s> Zaps</Fragment>
@@ -33,9 +33,9 @@ const tiers = [
       If you can't send zaps, send memes. Or things to read.
     </SectionHeading>
 
-    <ul class="grid border-t border-rule sm:grid-cols-3">
+    <ul class="grid sm:grid-cols-3">
       {tiers.map((t) => (
-        <li class:list={['flex flex-col border-b border-rule py-8 sm:border-b-0 sm:border-r sm:px-8 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0', t.featured && 'sm:bg-paper-2']}>
+        <li class:list={['flex flex-col py-8 first:pt-0 last:pb-0 sm:border-r sm:border-rule sm:px-8 sm:py-8 sm:first:pl-0 sm:first:pt-8 sm:last:border-r-0 sm:last:pb-8 sm:last:pr-0', t.featured && 'sm:bg-paper-2']}>
           <h3 class="font-serif-reading text-2xl font-semibold tracking-tight">{t.name}</h3>
           <p class="mt-2 text-3xl font-medium tabular-nums tracking-tight">
             {t.featured ? <span class="mark-mine">{t.amount}</span> : t.amount}
@@ -47,7 +47,7 @@ const tiers = [
       ))}
     </ul>
 
-    <div class="mt-10 flex flex-col gap-4 border-t border-rule pt-10 sm:mt-14 sm:flex-row sm:items-center sm:gap-6">
+    <div class="mt-10 flex flex-col gap-4 sm:mt-14 sm:flex-row sm:items-center sm:gap-6">
       <a
         href={NOSTR_PROFILE_URI}
         class="inline-flex h-12 w-fit items-center rounded-lg bg-ink px-6 text-base font-medium text-paper no-underline transition-opacity duration-150 hover:opacity-85"

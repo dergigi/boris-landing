@@ -181,7 +181,7 @@ components:
 
 The page behaves like a page someone has already read and marked. Ink on ivory paper, a serif for anything meant to be read, a sans for anything meant to be operated, and three highlighter colors that appear only as marks on text (or as the legend swatches that explain them). The app proves itself by its output: a real passage carrying yellow, orange, and purple marks sits beside a real Android screenshot. Nothing on the page decorates; every colored pixel is either a highlight or a brand asset.
 
-Density is editorial and generous. Sections are separated by hairline rules rather than backgrounds, lists are rows divided by the same rule, and the largest type is a serif greeting at 4.25rem. There are no cards, no shadows, no gradients as decoration, no icons. Dark mode is graphite (zinc) and follows the operating system; the marks turn translucent over it the way the Android app renders them.
+Density is editorial and generous. Chrome is framed (nav bottom, footer top), the hero phone is cut by one hairline, and everything else separates with type and space. The largest type is a serif greeting at 4.25rem. There are no cards, no shadows, no gradients as decoration, no icons. Dark mode is graphite (zinc) and follows the operating system; the marks turn translucent over it the way the Android app renders them.
 
 Lineage: Kindle popular highlights and the Readwise daily review. Chosen as IMPECCABLE'S PICK over the assigned "Paperback Series" direction (seed key d20a4c30), built code-led with no comp. The rejected devices are the centered device-mockup hero and the icon-card feature grid.
 
@@ -207,7 +207,7 @@ A two-tone paper-and-ink page with three highlighter hues that never leave the t
 - **Ink** (`ink`): headlines, passages, primary button fill, focus outline, mark text.
 - **Ink 2** (`ink-2`): running body text, nav links at rest, captions, footer links.
 - **Ink 3** (`ink-3`): footer group headings and fine print, the struck-through "Pricing", the underline color of inline links at rest.
-- **Rule** (`rule`): every hairline: section dividers, list rows, the top rule above each list, the phone frame border, the figure rule above the hero passage.
+- **Rule** (`rule`): the few remaining hairlines: nav bottom, hero cut, hero passage figure, footer top, Zaps vertical column rules, the phone frame border.
 
 ### Named Rules
 **The Marks-Only Chroma Rule.** Yellow, orange, and purple appear on this page only as a highlight mark on text or as a legend swatch explaining a mark. Buttons are ink, links are ink, headings are ink. The two cited exceptions are brand assets: the wordmark (`public/boris-logo.svg`, purple with an orange dot and yellow underline) and the Zapstore badge.
@@ -245,9 +245,9 @@ A two-tone paper-and-ink page with three highlighter hues that never leave the t
 
 One column of content inside a `max-w-6xl` (72rem) container with `px-5` (20px) gutters on mobile and `sm:px-8` (32px) from 640px up. The container is the same in the nav, every section, and the footer, so all left edges align.
 
-The hero is a screen: its grid is `min-h-[calc(100svh-4rem)]` (viewport minus the 64px nav) with `lg:items-center`, so the first view is the greeting and the phone, nothing else. Features is many screens tall by nature. Everything after it (credits, Zaps, FAQ, CTA) takes only the height its content needs; forcing those to full height left too much empty paper. Sections are stacked and separated by a 1px `rule` on their bottom edge (`border-b border-rule`); there is no background change between sections. Vertical padding is `py-16` (64px) on mobile and `sm:py-24` (96px) from 640px. The hero uses `pt-14 / sm:pt-20 / lg:pt-24` and no bottom padding on its image column so the phone can be cut by the section rule. The credits section is shorter (`py-12 / sm:py-16`), as is the footer (`py-14 / sm:py-16`).
+The hero is a screen: its grid is `min-h-[calc(100svh-4rem)]` (viewport minus the 64px nav) with `lg:items-center`, so the first view is the greeting and the phone, nothing else. Features is many screens tall by nature. Everything after it (credits, Zaps, FAQ, CTA) takes only the height its content needs; forcing those to full height left too much empty paper. Sections stack on the same paper with no background change. Vertical padding is `py-16` (64px) on mobile and `sm:py-24` (96px) from 640px. The hero uses `pt-14 / sm:pt-20 / lg:pt-24` and no bottom padding on its image column so the phone can be cut by the section rule. The credits section is shorter (`py-12 / sm:py-16`), as is the footer (`py-14 / sm:py-16`).
 
-Inside a section, lists are rows: a `border-t border-rule` above the list, each item with `border-b border-rule` and `py-8` (32px). Features run 1 / 2 / 3 columns at base / sm / lg with `gap-x-10` (40px); FAQ runs 1 / 3 at base / md; Zaps runs 1 / 3 at base / sm with vertical rules (`sm:border-r`) between tiers and `sm:px-8` internal padding instead of row rules. The hero is a 12-column grid at lg: text spans 7, the phone spans 5, with `gap-x-12` (48px).
+Inside a section, lists are rows separated by padding, not hairlines. Features run as alternating two-column rows; FAQ runs 1 / 3 at base / md; Zaps runs 1 / 3 at base / sm with vertical rules (`sm:border-r`) between tiers and `sm:px-8` internal padding. The hero is a 12-column grid at lg: text spans 7, the phone spans 5, with `gap-x-12` (48px).
 
 The 8px module governs small spacing: `gap-2` (8), `mt-3` (12), `mt-4` / `gap-4` (16), `mt-6` (24), `mt-8` (32). Section heading blocks end with `mb-10 / sm:mb-14`.
 
@@ -305,7 +305,7 @@ FAQ and tiers share one pattern: `border-t` on the list, `border-b` on each row,
 - Every screenshot ships from `public/*.webp` with a `.webp.json` provenance sidecar and descriptive alt text.
 
 ### Feature Illustrations
-- Features run as alternating two-column rows (`md:grid-cols-2`, `gap-16`, `py-24`, hairline between rows): text in a `max-w-md` column, the undraw-style SVG from `public/*.svg` centered in the other at `h-72` (`h-56` on mobile), sides swapping each row via `md:order-last`. Decorative (`alt=""`), lazy.
+- Features run as alternating two-column rows (`md:grid-cols-2`, `gap-16`, `py-24`, space between rows): text in a `max-w-md` column, the undraw-style SVG from `public/*.svg` centered in the other at `h-72` (`h-56` on mobile), sides swapping each row via `md:order-last`. Decorative (`alt=""`), lazy.
 - On hover-capable pointers the idle state is `grayscale` (`@media (hover: hover)`), so their purple and pink stay out of the page's chroma; hovering the row (`group-hover:grayscale-0`, 300ms filter transition) releases the color. Touch devices have no hover, so the drawings stay in color.
 - Dark scheme adds `invert hue-rotate-180`, which lifts the dark linework to light and keeps the purple recognizably purple on hover.
 
@@ -321,7 +321,7 @@ Motion: adding `mark-draw` animates `background-size` from `0% 100%` to `100% 10
 
 ### Do:
 - **Do** paint highlights as a band with a 2px darker bottom edge (`mark-*`), cloned across wraps, and keep the text ink.
-- **Do** divide with 1px `rule` hairlines: between sections, above lists, between rows. Let the rule be the cut when an image must end.
+- **Do** use a 1px `rule` only where it frames chrome (nav, footer), cuts the hero phone, or marks the hero passage. Let space divide the rest.
 - **Do** set anything readable in Source Serif 4 (600 for headings, 400 for passages) and anything operable in Inter (400 for body, 500 for labels).
 - **Do** keep the `max-w-6xl` container with `px-5 / sm:px-8` gutters and `py-16 / sm:py-24` section padding so every left edge aligns.
 - **Do** let dark mode follow `prefers-color-scheme`, remapping `paper`, `ink`, and `rule` to zinc and making the mark bands translucent with `color-mix`.
@@ -329,7 +329,7 @@ Motion: adding `mark-draw` animates `background-size` from `0% 100%` to `100% 10
 - **Do** ship every screenshot as a `.webp` with its `.webp.json` provenance sidecar and real alt text.
 
 ### Don't:
-- **Don't** use cards. Lists are rows divided by rules; the only bordered box is a phone screenshot frame.
+- **Don't** use cards. Lists are rows divided by space; the only bordered box is a phone screenshot frame.
 - **Don't** use shadows, blur, or glass. The page is flat paper.
 - **Don't** use gradients as decoration. The mark's two-stop gradient is a paint technique for a band with an edge, not a visible gradient.
 - **Don't** put yellow, orange, or purple on anything but a mark or a legend swatch. Buttons, links, and headings are ink. Brand assets (wordmark, Zapstore badge) are the cited exceptions.
