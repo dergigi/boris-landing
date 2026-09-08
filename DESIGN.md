@@ -298,7 +298,7 @@ FAQ and tiers share one pattern: `border-t` on the list, `border-b` on each row,
 
 ### Phone Frame
 - **Style (`.phone`):** block, 0.5rem corners, 1px `rule` border, `paper-2` fill, `overflow: hidden`; the image covers from the top.
-- **Hero (`.device` + `.device-screen`):** an Android frame drawn in CSS: matte `#0c0c0e` bezel with 0.625rem padding and 2.5rem corners, a hairline `ink` at 18% around it, a punch-hole camera from `::before`, and a status-bar strip (2.25rem) that continues the screenshot's own top color (`#f3edf8` light, `#18181a` dark). No gloss, no side buttons, no shadow. `max-w-[20rem] / lg:max-w-[24rem]`, absolutely positioned at the top of a clipped column, cut by the section rule. Light and dark screenshots swap via `dark:hidden` / `dark:block`.
+- **Hero (`.device` + `.device-screen`):** an Android frame drawn in CSS: matte `#0c0c0e` bezel with 0.625rem padding and 2.5rem corners, a hairline `ink` at 18% around it, a punch-hole camera from `::before`, and a status-bar strip (2.25rem) that continues the screenshot's own top color (`#f3edf8` light, `#18181a` dark). No gloss, no side buttons, no shadow. `max-w-[20rem] / lg:max-w-[24rem]`, absolutely positioned at the top of a clipped column, cut by the section rule. Inside, `.slideshow` cross-dissolves four screens per theme (CSS only: `--d` dwell of 4s, `--i` index as negative delay, 5% fades, pauses on hover, first slide only under reduced motion). Light and dark sets swap via `dark:hidden` / `dark:block`.
 - **Strip:** `aspect-[2/3]` frames with `fade-bottom`, five Android screens, lazy-loaded.
 - Every screenshot ships from `public/*.webp` with a `.webp.json` provenance sidecar and descriptive alt text.
 

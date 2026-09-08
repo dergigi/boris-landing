@@ -1,6 +1,22 @@
 ---
 import GetBoris from './GetBoris.astro';
 
+// Four screens per theme; the slideshow keyframes assume exactly four.
+const slides = {
+  light: [
+    { src: '/android-read-2.webp', alt: 'Boris on Android in light mode: an essay in serif type with a passage highlighted in orange by a friend' },
+    { src: '/android-read-4.webp', alt: 'Reading in light mode with your own yellow highlights and purple ones from the nostrverse' },
+    { src: '/android-read-3.webp', alt: 'Reading with text-to-speech playing, the current passage highlighted' },
+    { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
+  ],
+  dark: [
+    { src: '/android-dark-2.webp', alt: 'Boris on Android in dark mode: the highlights panel showing a passage marked by you and by others in the nostrverse' },
+    { src: '/android-1-home.webp', alt: 'Home screen in dark mode: recently highlighted by others, most highlighted this week, random unreads' },
+    { src: '/android-4-search.webp', alt: 'Searching highlights across the nostrverse for a word' },
+    { src: '/android-reader-art.webp', alt: 'An article with cover art in dark mode' },
+  ],
+};
+
 const levels = [
   { mark: 'mark-mine', label: 'you' },
   { mark: 'mark-friends', label: 'friends' },
@@ -48,22 +64,30 @@ const levels = [
     <div class="relative h-[22rem] overflow-hidden sm:h-[28rem] lg:col-span-5 lg:h-auto lg:self-stretch">
       <div class="device absolute inset-x-0 top-0 mx-auto w-full max-w-[20rem] lg:mx-0 lg:ml-auto lg:max-w-[24rem]">
         <div class="device-screen">
-          <img
-            src="/android-read-2.webp"
-            width="720"
-            height="1462"
-            alt="Boris on Android in light mode: an essay in serif type with a passage highlighted in orange by a friend"
-            class="dark:hidden"
-            fetchpriority="high"
-          />
-          <img
-            src="/android-dark-2.webp"
-            width="720"
-            height="1462"
-            alt="Boris on Android in dark mode: the highlights panel showing the same passage marked by you and by others in the nostrverse"
-            class="hidden dark:block"
-            fetchpriority="high"
-          />
+          <div class="slideshow" style="--d: 4s">
+            {slides.light.map((s, i) => (
+              <img
+                src={s.src}
+                width="720"
+                height="1462"
+                alt={s.alt}
+                class:list={['dark:hidden', i === 0 && 'slide-default']}
+                style={`--i: ${i}`}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+            {slides.dark.map((s, i) => (
+              <img
+                src={s.src}
+                width="720"
+                height="1462"
+                alt={s.alt}
+                class:list={['hidden dark:block', i === 0 && 'slide-default']}
+                style={`--i: ${i}`}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

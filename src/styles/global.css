@@ -227,8 +227,49 @@
   @media (prefers-color-scheme: dark) {
     background: #18181a;
   }
+}
+
+/* CSS-only slideshow: four screens cross-dissolve, each on stage for a
+   quarter of the cycle. `--i` is the slide index, `--d` the dwell time.
+   Pauses on hover; under reduced motion only the first slide shows. */
+@utility slideshow {
+  position: relative;
+  aspect-ratio: 720 / 1462;
   & > img {
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0;
+    animation: slideshow calc(var(--d) * 4) linear infinite;
+    animation-delay: calc(var(--i) * var(--d) * -1);
+  }
+  &:hover > img {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & > img {
+      animation: none;
+    }
+    & > .slide-default {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes slideshow {
+  0%,
+  20% {
+    opacity: 1;
+  }
+  25%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
