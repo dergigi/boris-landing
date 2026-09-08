@@ -294,7 +294,7 @@ A 64px bar (`h-16`) with the wordmark at `h-9` on the left, the link list (Inter
 Serif headline on the left, optional Inter intro (`max-w-md`, ink-2) on the right, aligned to the baseline on `sm:` (`items-end justify-between`) and stacked on mobile with `gap-4`. Bottom margin `mb-10 / sm:mb-14`. No kicker above, no rule below; the list's own `border-t` supplies the line.
 
 ### List Rows
-Features, FAQ, and tiers share one pattern: `border-t` on the list, `border-b` on each row, `py-8`, a serif title at 1.5rem, and body at 15px ink-2 starting at `mt-3`. Tiers swap the row rules for vertical rules on `sm:`.
+FAQ and tiers share one pattern: `border-t` on the list, `border-b` on each row, `py-8`, a serif title at 1.5rem, and body at 15px ink-2 starting at `mt-3`. Tiers swap the row rules for vertical rules on `sm:`. Feature rows use the same rules at a larger rhythm (see Feature Illustrations).
 
 ### Phone Frame
 - **Style (`.phone`):** block, 0.5rem corners, 1px `rule` border, `paper-2` fill, `overflow: hidden`; the image covers from the top.
@@ -303,7 +303,7 @@ Features, FAQ, and tiers share one pattern: `border-t` on the list, `border-b` o
 - Every screenshot ships from `public/*.webp` with a `.webp.json` provenance sidecar and descriptive alt text.
 
 ### Feature Illustrations
-- The undraw-style SVGs in `public/*.svg` sit above each feature title at `h-36`, left-aligned, decorative (`alt=""`), lazy.
+- Features run as alternating two-column rows (`md:grid-cols-2`, `gap-16`, `py-24`, hairline between rows): text in a `max-w-md` column, the undraw-style SVG from `public/*.svg` centered in the other at `h-72` (`h-56` on mobile), sides swapping each row via `md:order-last`. Decorative (`alt=""`), lazy.
 - Idle state is `grayscale`, so their purple and pink stay out of the page's chroma; hovering the row (`group-hover:grayscale-0`, 300ms filter transition) releases the color.
 - Dark scheme adds `invert hue-rotate-180`, which lifts the dark linework to light and keeps the purple recognizably purple on hover.
 
