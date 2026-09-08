@@ -196,6 +196,36 @@
   mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
 }
 
+/* Full-bleed strip of screens drifting left. The list holds two copies, so
+   translating by half its width loops seamlessly (items space with margin,
+   not gap, to keep the halves identical). Pauses on hover; under reduced
+   motion it stands still and can be scrolled by hand. */
+@utility marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  & > ul {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 90s) linear infinite;
+  }
+  &:hover > ul {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    mask-image: none;
+    & > ul {
+      animation: none;
+    }
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Feature illustrations draw themselves in: each shape's outline is stroked
    along its length, then the fill settles in. Staggered by `--i` of `--n`.
    Hidden only once JS marks the svg `illo-ready`, so no-JS still shows them. */

@@ -85,6 +85,17 @@ const shots = [
   { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
   { src: '/android-reader-art.webp', alt: 'An article with cover art in dark mode' },
   { src: '/android-2-library.webp', alt: 'Your library: private, public, and web bookmarks in one reading list' },
+  { src: '/android-read-3.webp', alt: 'Reading with text-to-speech playing, the current passage highlighted' },
+  { src: '/android-3-feeds.webp', alt: 'Feeds in dark mode: highlights, writings, and RSS from people you follow' },
+  { src: '/android-search-highlight.webp', alt: 'A search result with the matching passages highlighted' },
+  { src: '/android-settings-1.webp', alt: 'Settings: appearance, reading, text-to-speech, media, highlights, zap splits' },
+  { src: '/android-dark-1.webp', alt: 'Reading an essay in dark mode' },
+  { src: '/android-profile-highlights.webp', alt: 'A profile with its highlights, writings, and bookmarks' },
+  { src: '/android-read-4.webp', alt: 'Reading in light mode with your own yellow highlights and purple ones from the nostrverse' },
+  { src: '/android-5-you.webp', alt: 'Your profile: recent activity and what you have been reading' },
+  { src: '/android-settings-highlights.webp', alt: 'Highlight settings in dark mode with a live preview' },
+  { src: '/android-4-search.webp', alt: 'Searching highlights across the nostrverse for a word' },
+  { src: '/android-dark-2.webp', alt: 'The highlights panel in dark mode' },
 ];
 ---
 
@@ -112,16 +123,17 @@ const shots = [
         </li>
       ))}
     </ul>
+  </div>
 
-    <ul
-      class="-mx-5 mt-20 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0"
-      aria-label="Screens from the Android app"
-    >
-      {shots.map((s) => (
-        <li class="phone fade-bottom aspect-[2/3] w-[62vw] shrink-0 snap-start sm:w-64 lg:w-auto">
-          <img src={s.src} alt={s.alt} width="720" height="1462" loading="lazy" decoding="async" />
-        </li>
-      ))}
+  <div class="marquee pb-16 sm:pb-24" style={`--marquee-duration: ${shots.length * 6}s`}>
+    <ul aria-label="Screens from the Android app">
+      {[false, true].map((copy) =>
+        shots.map((s) => (
+          <li class="phone fade-bottom mr-4 aspect-[2/3] w-52 shrink-0 sm:w-56" aria-hidden={copy || undefined}>
+            <img src={s.src} alt={copy ? '' : s.alt} width="720" height="1462" loading="lazy" decoding="async" />
+          </li>
+        )),
+      )}
     </ul>
   </div>
 </section>
