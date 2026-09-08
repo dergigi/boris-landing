@@ -79,24 +79,36 @@ const features = [
   },
 ];
 
-const shots = [
-  { src: '/android-read-1.webp', alt: 'Reading an essay in light mode, with title, reading time, and highlight count' },
-  { src: '/android-1-home.webp', alt: 'Home screen in dark mode: recently highlighted by others, most highlighted this week, random unreads' },
-  { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
-  { src: '/android-reader-art.webp', alt: 'An article with cover art in dark mode' },
-  { src: '/android-2-library.webp', alt: 'Your library: private, public, and web bookmarks in one reading list' },
-  { src: '/android-read-3.webp', alt: 'Reading with text-to-speech playing, the current passage highlighted' },
-  { src: '/android-3-feeds.webp', alt: 'Feeds in dark mode: highlights, writings, and RSS from people you follow' },
-  { src: '/android-search-highlight.webp', alt: 'A search result with the matching passages highlighted' },
-  { src: '/android-settings-1.webp', alt: 'Settings: appearance, reading, text-to-speech, media, highlights, zap splits' },
-  { src: '/android-dark-1.webp', alt: 'Reading an essay in dark mode' },
-  { src: '/android-profile-highlights.webp', alt: 'A profile with its highlights, writings, and bookmarks' },
-  { src: '/android-read-4.webp', alt: 'Reading in light mode with your own yellow highlights and purple ones from the nostrverse' },
-  { src: '/android-5-you.webp', alt: 'Your profile: recent activity and what you have been reading' },
-  { src: '/android-settings-highlights.webp', alt: 'Highlight settings in dark mode with a live preview' },
-  { src: '/android-4-search.webp', alt: 'Searching highlights across the nostrverse for a word' },
-  { src: '/android-dark-2.webp', alt: 'The highlights panel in dark mode' },
-];
+// One strip per theme, in the order you would meet the screens: arrive,
+// find something, read it, mark it, tune it, look back at what you've read.
+const shots = {
+  light: [
+    { src: '/android-read-1.webp', alt: 'Reading an essay in light mode, with title, reading time, and highlight count' },
+    { src: '/android-read-2.webp', alt: 'An essay with a passage highlighted in orange by a friend' },
+    { src: '/android-read-4.webp', alt: 'Reading with your own yellow highlights and purple ones from the nostrverse' },
+    { src: '/android-read-3.webp', alt: 'Reading with text-to-speech playing, the current passage highlighted' },
+    { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
+    { src: '/android-settings-1.webp', alt: 'Settings: appearance, reading, text-to-speech, media, highlights, zap splits' },
+    { src: '/android-settings-feeds.webp', alt: 'Feeds settings: default view, scope, and your RSS feeds' },
+    { src: '/android-settings-3.webp', alt: 'Airplane mode settings: local relay, offline bookmarks and highlights' },
+    { src: '/android-settings-4.webp', alt: 'About Boris: tutorial, vision, support, source code, author' },
+  ],
+  dark: [
+    { src: '/android-1-home.webp', alt: 'Home screen: recently highlighted by others, most highlighted this week, random unreads' },
+    { src: '/android-2-library.webp', alt: 'Your library: private, public, and web bookmarks in one reading list' },
+    { src: '/android-3-feeds.webp', alt: 'Feeds: highlights, writings, and RSS from people you follow' },
+    { src: '/android-4-search.webp', alt: 'Searching highlights across the nostrverse for a word' },
+    { src: '/android-search-highlight.webp', alt: 'A search result with the matching passages highlighted' },
+    { src: '/android-dark-1.webp', alt: 'Reading an essay in dark mode' },
+    { src: '/android-reader-art.webp', alt: 'An article with cover art' },
+    { src: '/android-dark-4.webp', alt: 'Reading with highlights from you, your friends, and the nostrverse layered on the text' },
+    { src: '/android-dark-2.webp', alt: 'The highlights panel: a passage marked by you and by others' },
+    { src: '/android-settings-reading.webp', alt: 'Reading settings: font, size, alignment, and highlight colors with a live preview' },
+    { src: '/android-profile-highlights.webp', alt: 'A profile with its highlights, writings, and bookmarks' },
+    { src: '/android-5-you.webp', alt: 'Your profile: recent activity and what you have been reading' },
+  ],
+};
+
 ---
 
 <section id="features" class="scroll-mt-16 border-b border-rule">
@@ -125,17 +137,22 @@ const shots = [
     </ul>
   </div>
 
-  <div class="marquee pb-16 sm:pb-24" style={`--marquee-duration: ${shots.length * 6}s`}>
-    <ul aria-label="Screens from the Android app">
-      {[false, true].map((copy) =>
-        shots.map((s) => (
-          <li class="phone fade-bottom mr-4 aspect-[2/3] w-52 shrink-0 sm:w-56" aria-hidden={copy || undefined}>
-            <img src={s.src} alt={copy ? '' : s.alt} width="720" height="1462" loading="lazy" decoding="async" />
-          </li>
-        )),
-      )}
-    </ul>
-  </div>
+  {Object.entries(shots).map(([theme, list]) => (
+    <div
+      class:list={['marquee pb-16 sm:pb-24', theme === 'dark' ? 'hidden dark:block' : 'dark:hidden']}
+      style={`--marquee-duration: ${list.length * 6}s`}
+    >
+      <ul aria-label="Screens from the Android app">
+        {[false, true].map((copy) =>
+          list.map((s) => (
+            <li class="phone fade-bottom mr-4 aspect-[2/3] w-52 shrink-0 sm:w-56" aria-hidden={copy || undefined}>
+              <img src={s.src} alt={copy ? '' : s.alt} width="720" height="1462" loading="lazy" decoding="async" />
+            </li>
+          )),
+        )}
+      </ul>
+    </div>
+  ))}
 </section>
 
 <script>
