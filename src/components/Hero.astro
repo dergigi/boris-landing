@@ -1,49 +1,95 @@
 ---
-// Hero component
+import GetBoris from './GetBoris.astro';
 
-import { ZAPSTORE_ANDROID_URL } from '../config/links';
+// Four screens per theme; the slideshow keyframes assume exactly four.
+const slides = {
+  light: [
+    { src: '/android-read-2.webp', alt: 'Boris on Android in light mode: an essay in serif type with a passage highlighted in orange by a friend' },
+    { src: '/android-read-4.webp', alt: 'Reading in light mode with your own yellow highlights and purple ones from the nostrverse' },
+    { src: '/android-read-3.webp', alt: 'Reading with text-to-speech playing, the current passage highlighted' },
+    { src: '/android-settings-2.webp', alt: 'Highlight settings: pick a color for your own, your friends\', and nostrverse highlights' },
+  ],
+  dark: [
+    { src: '/android-1-home.webp', alt: 'Boris on Android in dark mode: recently highlighted by others, most highlighted this week, random unreads' },
+    { src: '/android-reader-art.webp', alt: 'An article with cover art in dark mode' },
+    { src: '/android-dark-2.webp', alt: 'The highlights panel showing a passage marked by you and by others in the nostrverse' },
+    { src: '/android-4-search.webp', alt: 'Searching highlights across the nostrverse for a word' },
+  ],
+};
+
+const levels = [
+  { mark: 'mark-mine', label: 'you' },
+  { mark: 'mark-friends', label: 'friends' },
+  { mark: 'mark-nostrverse', label: 'nostrverse' },
+];
 ---
 
-<div class="container mx-auto h-screen">
-  <div class="text-center px-3 lg:px-0">
-    <h1
-      class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight text-gray-800 dark:text-gray-100"
-    >
-      Hello! I'm Boris. I like to read.
-    </h1>
-    <p
-      class="leading-normal text-gray-800 dark:text-gray-200 text-base md:text-xl lg:text-2xl mb-8"
-    >
-      I'm a nostr-native app designed for reading and <span class="bg-yellow-300 dark:bg-yellow-500 px-1 text-gray-900">highlighting</span>.
-    </p>
+<section class="border-b border-rule">
+  <div class="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl gap-x-12 px-5 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-12 lg:items-center lg:pt-24">
+    <div class="pb-14 lg:col-span-7 lg:pb-24">
+      <h1 class="font-serif-reading text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl lg:text-[4.25rem]">
+        Hello! I'm Boris.<br />I like to read.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+        I'm a nostr-native app designed for reading and
+        <span class="mark-mine">highlighting</span>.
+      </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 my-2 md:my-6">
-      <a
-        href="https://read.withboris.com"
-        class="inline-block hover:underline gradient2 text-gray-800 dark:text-gray-900 font-extrabold rounded py-4 px-8 shadow-lg w-56 text-center"
-      >
-        Start Reading
-      </a>
-      <a
-        href={ZAPSTORE_ANDROID_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block hover:underline bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 font-extrabold rounded py-4 px-8 shadow-lg w-56 text-center"
-      >
-        <i class="fa-solid fa-mobile-screen-button mr-2"></i>Android App
-      </a>
-      <a
-        href="https://github.com/dergigi/boris"
-        class="inline-block hover:underline bg-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-extrabold py-2 lg:py-4 px-8"
-        ><i class="fa-brands fa-github mr-2"></i>GitHub</a
-      >
+      <GetBoris class="mt-8" />
+
+      <figure class="mt-14 max-w-2xl border-t border-rule pt-8 sm:mt-16">
+        <blockquote class="font-serif-reading text-xl leading-[1.55] sm:text-[1.75rem]">
+          <p>
+            Information does not just want to be free,
+            <span class="mark-mine mark-draw" style="--mark-delay: 0.3s">it longs to be free</span>.
+            <span class="mark-friends mark-draw" style="--mark-delay: 0.7s">Information expands to fill the available storage space.</span>
+            Information is Rumor's younger, stronger cousin; Information is fleeter of foot,
+            <span class="mark-nostrverse mark-draw" style="--mark-delay: 1.1s">has more eyes, knows more, and understands less than Rumor</span>.
+          </p>
+        </blockquote>
+        <figcaption class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-2">
+          <span>Eric Hughes, <cite class="not-italic">A Cypherpunk's Manifesto</cite></span>
+          <ul class="flex items-center gap-4" aria-label="Highlight levels">
+            {levels.map((l) => (
+              <li class="flex items-center gap-1.5">
+                <span class:list={['inline-block h-3 w-3 rounded-[3px]', l.mark]} aria-hidden="true"></span>
+                {l.label}
+              </li>
+            ))}
+          </ul>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="relative h-[22rem] overflow-hidden sm:h-[28rem] lg:col-span-5 lg:h-auto lg:self-stretch">
+      <div class="device absolute inset-x-0 top-0 mx-auto w-full max-w-[20rem] lg:mx-0 lg:ml-auto lg:max-w-[24rem]">
+        <div class="device-screen">
+          <div class="slideshow" style="--d: 4s">
+            {slides.light.map((s, i) => (
+              <img
+                src={s.src}
+                width="720"
+                height="1462"
+                alt={s.alt}
+                class:list={['dark:hidden', i === 0 && 'slide-default']}
+                style={`--i: ${i}`}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+            {slides.dark.map((s, i) => (
+              <img
+                src={s.src}
+                width="720"
+                height="1462"
+                alt={s.alt}
+                class:list={['hidden dark:block', i === 0 && 'slide-default']}
+                style={`--i: ${i}`}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="flex items-center w-full mx-auto content-end">
-    <div class="w-full m-6 md:px-0 md:m-12">
-      <img src="/screenshot.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full max-w-4xl mx-auto dark:hidden" />
-      <img src="/screenshot-dark.png" alt="Boris app screenshot showing purple text and orange highlights" class="w-full max-w-4xl mx-auto hidden dark:block" />
-    </div>
-  </div>
-</div>
+</section>

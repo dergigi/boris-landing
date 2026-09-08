@@ -1,78 +1,368 @@
-@import url("https://rsms.me/inter/inter.css");
+/* Self-hosted fonts: no third-party requests. Source Serif 4 with its optical size axis, like the Android reader. */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter/wght-italic.css";
+@import "@fontsource-variable/source-serif-4/opsz.css";
 
 @import "tailwindcss";
 
-/* Boris Color Palette */
+/* Dark follows the OS. Tailwind's `dark:` variant reads the same media query. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
+
+  /* Highlight levels: mine / friends / nostrverse */
+  --color-mark-mine: #fde047;
+  --color-mark-friends: #fdba74;
+  --color-mark-nostrverse: #d8b4fe;
+
+  /* Ground and ink, remapped in dark below */
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+}
+
 :root {
-  --boris-yellow: #fde047; /* Yellow (Tailwind yellow-300) */
-  --boris-orange: #f97316; /* Orange (Tailwind orange-500) */
-  --boris-purple: #9333ea; /* Purple (Tailwind purple-600) */
-  
-  /* Ivory Theme (Light) */
-  --bg-primary: #FFFFF0; /* Ivory */
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f2f2f2;
-  --text-primary: #1f2937; /* gray-800 */
-  --text-secondary: #4b5563; /* gray-600 */
-  --text-tertiary: #6b7280; /* gray-500 */
-  --border-color: #e5e7eb;
+  --paper: #fffff0;
+  --paper-2: #f7f6e8;
+  --ink: #1c1917;
+  --ink-2: #57534e;
+  --ink-3: #78716c;
+  --rule: #e2e0d0;
+
+  /* Mark edges, like the app: band plus a darker bottom edge */
+  --mark-mine-edge: #eab308;
+  --mark-friends-edge: #f97316;
+  --mark-nostrverse-edge: #9333ea;
+
+  color-scheme: light;
 }
 
-.dark {
-  /* Graphene Theme (Dark) */
-  --bg-primary: #18181b; /* zinc-900 */
-  --bg-secondary: #27272a; /* zinc-800 */
-  --bg-tertiary: #3f3f46; /* zinc-700 */
-  --text-primary: #fafafa; /* gray-50 */
-  --text-secondary: #e4e4e7; /* zinc-200 */
-  --text-tertiary: #a1a1aa; /* zinc-400 */
-  --border-color: #3f3f46;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #18181b;
+    --paper-2: #1f1f23;
+    --ink: #f4f4f5;
+    --ink-2: #a1a1aa;
+    --ink-3: #8e8e97;
+    --rule: #2e2e33;
+
+    /* Translucent bands over graphite, as the app renders them in dark */
+    --color-mark-mine: color-mix(in srgb, #fde047 34%, transparent);
+    --color-mark-friends: color-mix(in srgb, #fb923c 36%, transparent);
+    --color-mark-nostrverse: color-mix(in srgb, #c084fc 38%, transparent);
+    --mark-mine-edge: #facc15;
+    --mark-friends-edge: #fb923c;
+    --mark-nostrverse-edge: #c084fc;
+
+    color-scheme: dark;
+  }
 }
 
-html {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    background-color: var(--paper);
+    color: var(--ink);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-mark-mine);
+    color: #1c1917;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
 }
 
-.gradient {
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
+@utility font-serif-reading {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
 }
 
-/* Only apply gradient to explicit .gradient2 elements (not all buttons) */
-.gradient2 {
-  background-color: var(--boris-orange);
-  background-image: linear-gradient(315deg, var(--boris-orange) 0%, var(--boris-yellow) 74%);
+/* A highlight mark: filled band with a darker bottom edge, as in the app.
+   Painted as a background so it can be drawn in and survives line wraps. */
+@utility mark-mine {
+  --mark-band: var(--color-mark-mine);
+  --mark-edge: var(--mark-mine-edge);
+  background-image: linear-gradient(to top, var(--mark-edge) 0 2px, var(--mark-band) 2px);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: var(--ink);
+  padding: 0.05em 0.15em;
+  margin: 0 -0.05em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-/* Browser mockup code
- * Contribute: https://gist.github.com/jarthod/8719db9fef8deb937f4f
- * Live example: https://updown.io
- */
+@utility mark-friends {
+  --mark-band: var(--color-mark-friends);
+  --mark-edge: var(--mark-friends-edge);
+  background-image: linear-gradient(to top, var(--mark-edge) 0 2px, var(--mark-band) 2px);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: var(--ink);
+  padding: 0.05em 0.15em;
+  margin: 0 -0.05em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
 
-.browser-mockup {
-  border-top: 2em solid rgba(230, 230, 230, 0.7);
+@utility mark-nostrverse {
+  --mark-band: var(--color-mark-nostrverse);
+  --mark-edge: var(--mark-nostrverse-edge);
+  background-image: linear-gradient(to top, var(--mark-edge) 0 2px, var(--mark-band) 2px);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: var(--ink);
+  padding: 0.05em 0.15em;
+  margin: 0 -0.05em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Signature moment: the hero marks draw in once, left to right. */
+@keyframes mark-draw {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@utility mark-draw {
+  animation: mark-draw 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--mark-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-draw {
+    animation: none;
+  }
+}
+
+/* Inline link inside running text: ink colored, underlined, never blue. */
+@utility link-inline {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ink-3);
+  transition: text-decoration-color 150ms ease-out;
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Strip frames end wherever the column width puts them, so the bottom
+   fades into the paper instead of slicing a line of text. */
+@utility fade-bottom {
+  mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+}
+
+/* Full-bleed strip of screens drifting left. The list holds two copies, so
+   translating by half its width loops seamlessly (items space with margin,
+   not gap, to keep the halves identical). Pauses on hover; under reduced
+   motion it stands still and can be scrolled by hand. */
+@utility marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  & > ul {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee var(--marquee-duration, 90s) linear infinite;
+  }
+  &:hover > ul {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    mask-image: none;
+    & > ul {
+      animation: none;
+    }
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Feature illustrations draw themselves in: each shape's outline is stroked
+   along its length, then the fill settles in. Staggered by `--i` of `--n`.
+   Hidden only once JS marks the svg `illo-ready`, so no-JS still shows them. */
+@utility illo {
+  & :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0;
+  }
+  &.illo-ready :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke-dashoffset: 1;
+  }
+  &.is-inview :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    animation:
+      illo-outline 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      illo-fill 0.6s ease-out forwards;
+    animation-delay:
+      calc(var(--i) / var(--n) * 1.4s),
+      calc(var(--i) / var(--n) * 1.4s + 0.5s);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &.illo-ready :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+      fill-opacity: 1;
+      stroke-opacity: 0;
+      animation: none;
+    }
+  }
+}
+
+@keyframes illo-outline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes illo-fill {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
+/* Android device frame for the hero: matte bezel, punch-hole camera, no gloss, no shadow. */
+@utility device {
   position: relative;
-  height: 60vh;
+  padding: 0.625rem;
+  border-radius: 2.5rem;
+  background: #0c0c0e;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 1.375rem;
+    left: 50%;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: -0.375rem;
+    border-radius: 50%;
+    background: #0c0c0e;
+    box-shadow: inset 0 0 0 2px #2a2a30;
+  }
 }
 
-.browser-mockup:before {
-  display: block;
-  position: absolute;
-  content: "";
-  top: -1.25em;
-  left: 1em;
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 50%;
-  background-color: #f44;
-  box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5;
+@utility device-screen {
+  overflow: hidden;
+  border-radius: 1.9rem;
+  /* Status-bar area continues the screenshot's own top color */
+  background: #f3edf8;
+  padding-top: 2.25rem;
+  @media (prefers-color-scheme: dark) {
+    background: #18181a;
+  }
 }
 
-.browser-mockup > * {
+/* CSS-only slideshow: four screens cross-dissolve, each on stage for a
+   quarter of the cycle. `--i` is the slide index, `--d` the dwell time.
+   Pauses on hover; under reduced motion only the first slide shows. */
+@utility slideshow {
+  position: relative;
+  aspect-ratio: 720 / 1462;
+  & > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0;
+    animation: slideshow calc(var(--d) * 4) linear infinite;
+    animation-delay: calc(var(--i) * var(--d) * -1);
+  }
+  &:hover > img {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & > img {
+      animation: none;
+    }
+    & > .slide-default {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes slideshow {
+  0%,
+  20% {
+    opacity: 1;
+  }
+  25%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Phone screenshot: a flat screen with a hairline, no device chrome. */
+@utility phone {
   display: block;
+  border-radius: 0.5rem;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  overflow: hidden;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
 }

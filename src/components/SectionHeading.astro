@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+}
+const { title, id } = Astro.props;
+---
+
+<div class="mb-12 flex flex-col gap-5 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
+  <h2 id={id} class="font-serif-reading text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl lg:text-[4.25rem]">
+    <slot name="title">{title}</slot>
+  </h2>
+  {Astro.slots.has('default') && (
+    <p class="max-w-md text-base leading-relaxed text-ink-2 sm:text-lg">
+      <slot />
+    </p>
+  )}
+</div>

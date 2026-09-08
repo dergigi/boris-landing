@@ -2,21 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
-import Customers from '../components/Customers.astro';
 import Features from '../components/Features.astro';
-import Cards from '../components/Cards.astro';
+import Customers from '../components/Customers.astro';
 import Pricing from '../components/Pricing.astro';
+import Cards from '../components/Cards.astro';
 import CallToAction from '../components/CallToAction.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Boris - Bookmarks and Other Stuff Read in Style" description="A nostr-native app designed for distraction-free reading and highlighting, available on the web and as a native Android app." image="/boris-social-1200.png">
+<Layout
+  title="Boris - Bookmarks and Other Stuff Read in Style"
+  description="A nostr-native app designed for distraction-free reading and highlighting. Native on Android, also in your browser."
+  image="/boris-social-1200.png"
+>
   <Navigation />
-  <Hero />
-  <Features />
-  <Customers />
-  <Pricing />
-  <Cards />
-  <CallToAction />
+  <main>
+    <Hero />
+    <Features />
+    <Customers />
+    <Pricing />
+    <Cards />
+    <CallToAction />
+  </main>
   <Footer />
 </Layout>

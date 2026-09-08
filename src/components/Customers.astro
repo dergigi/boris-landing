@@ -1,66 +1,51 @@
 ---
-// Customers section
+// Credits: projects and ideas Boris builds on.
+const giants = [
+  { href: 'https://github.com/hzrd149/applesauce', label: 'Applesauce', img: '/applesauce.svg' },
+  { href: 'https://github.com/greenart7c3/Citrine', label: 'Citrine', img: '/citrine.png' },
+  { href: 'https://highlighter.com/', label: 'Highlighter', img: '/highlighter.svg', imgDark: '/highlighter-dark.svg' },
+  { href: 'https://nostrbook.dev/kinds/9802', label: 'Kind 9802', img: '/kind9802.webp' },
+  { href: 'https://chromewebstore.google.com/detail/lantern/jjoijlenmgefkaeiomoaelcljfibpcgh', label: 'Lantern', img: '/lantern.png' },
+  { href: 'https://github.com/nostr-protocol/nips/blob/master/23.md', label: 'NIP-23', img: '/nostr.jpg' },
+  { href: 'https://read.withboris.com/a/naddr1qvzqqqr4gupzqmjxss3dld622uu8q25gywum9qtg4w4cv4064jmg20xsac2aam5nqqgxc6t8dp6xu6twvukhqunfwdkhx9800nj', label: 'Prism', img: '/prism.svg' },
+  { href: 'https://read.withboris.com/a/naddr1qvzqqqr4gupzqmjxss3dld622uu8q25gywum9qtg4w4cv4064jmg20xsac2aam5nqqxnzd3cxqmrzv3exgmr2wfesgsmew', label: 'Purple Text', img: '/ostrich-head.jpg' },
+];
 ---
 
-<section class="bg-white dark:bg-black border-b dark:border-zinc-800 py-12">
-  <div
-    class="container mx-auto flex flex-wrap items-center justify-between pb-12"
-  >
-    <h2
-      class="w-full my-2 text-xl font-black leading-tight text-center text-gray-800 dark:text-gray-100 lg:mt-8"
-    >
-      Standing on the Shoulders of Giants
-    </h2>
-    <div class="w-full mb-4">
-      <div
-        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
-      ></div>
-    </div>
-
-    <div
-      class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-xl text-gray-500 dark:text-gray-400 font-bold opacity-75"
-    >
-      <a href="https://github.com/hzrd149/applesauce" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/applesauce.svg" alt="Applesauce" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Applesauce</a
-      >
-
-      <a href="https://github.com/greenart7c3/Citrine" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/citrine.png" alt="Citrine" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Citrine</a
-      >
-
-      <a href="https://highlighter.com/" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/highlighter.svg" alt="Highlighter" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300 dark:hidden" />
-        <img src="/highlighter-dark.svg" alt="Highlighter" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300 hidden dark:block" />
-        Highlighter</a
-      >
-
-      <a href="https://nostrbook.dev/kinds/9802" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/kind9802.webp" alt="Kind 9802" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Kind 9802</a
-      >
-
-      <a href="https://chromewebstore.google.com/detail/lantern/jjoijlenmgefkaeiomoaelcljfibpcgh" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/lantern.png" alt="Lantern" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Lantern</a
-      >
-
-      <a href="https://github.com/nostr-protocol/nips/blob/master/23.md" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/nostr.jpg" alt="NIP-23" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        NIP-23</a
-      >
-
-      <a href="https://read.withboris.com/a/naddr1qvzqqqr4gupzqmjxss3dld622uu8q25gywum9qtg4w4cv4064jmg20xsac2aam5nqqgxc6t8dp6xu6twvukhqunfwdkhx9800nj" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/prism.svg" alt="Prism" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Prism</a
-      >
-
-      <a href="https://read.withboris.com/a/naddr1qvzqqqr4gupzqmjxss3dld622uu8q25gywum9qtg4w4cv4064jmg20xsac2aam5nqqxnzd3cxqmrzv3exgmr2wfesgsmew" target="_blank" rel="noopener noreferrer" class="w-1/2 p-4 md:w-auto flex items-center hover:opacity-100"
-        ><img src="/ostrich-head.jpg" alt="Purple Text" class="h-10 w-auto object-contain mr-4 opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        Purple Text</a
-      >
-    </div>
+<section class="border-b border-rule">
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+    <h2 class="text-sm font-medium text-ink-3">Standing on the shoulders of giants</h2>
+    <ul class="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
+      {giants.map((g) => (
+        <li>
+          <a
+            href={g.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-3 text-sm font-medium text-ink-2 no-underline transition-colors duration-150 hover:text-ink"
+          >
+            <img
+              src={g.img}
+              alt=""
+              width="28"
+              height="28"
+              loading="lazy"
+              class:list={['h-7 w-7 rounded-md object-contain grayscale transition-[filter] duration-200 group-hover:grayscale-0', g.imgDark && 'dark:hidden']}
+            />
+            {g.imgDark && (
+              <img
+                src={g.imgDark}
+                alt=""
+                width="28"
+                height="28"
+                loading="lazy"
+                class="hidden h-7 w-7 rounded-md object-contain grayscale transition-[filter] duration-200 group-hover:grayscale-0 dark:block"
+              />
+            )}
+            {g.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
-
