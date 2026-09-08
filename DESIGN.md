@@ -190,7 +190,7 @@ Lineage: Kindle popular highlights and the Readwise daily review. Chosen as IMPE
 - Three highlight levels (yellow mine, orange friends, purple nostrverse) are the only chroma the page adds
 - Serif reads, sans steers: Source Serif 4 for headlines and passages, Inter for chrome, labels, and body
 - Hairline rules structure everything; flat surfaces; 8px corners on the few boxes that exist
-- One signature motion: the hero marks draw in once, left to right, staggered
+- Motion is drawing, never sliding: hero marks draw in once, the phone cross-dissolves its screens, and each feature illustration sketches its outline and fills in when it scrolls into view
 
 ## Colors
 
@@ -310,7 +310,7 @@ FAQ and tiers share one pattern: `border-t` on the list, `border-b` on each row,
 ### Highlight Marks (signature)
 Three utilities, `mark-mine`, `mark-friends`, `mark-nostrverse`, each a `linear-gradient(to top, edge 0 2px, band 2px)` painted as `background-image` at `100% 100%`, ink text, 2px corners, cloned across line breaks. The legend is a 12px square (`h-3 w-3`, 3px corner) carrying the same utility beside a lowercase label in ink-2 at 0.875rem.
 
-Motion: adding `mark-draw` animates `background-size` from `0% 100%` to `100% 100%` over 0.6s with `cubic-bezier(0.16, 1, 0.3, 1)`, `both` fill, delayed by `--mark-delay`. The hero passage staggers its three marks at 0.3s / 0.7s / 1.1s. Under `prefers-reduced-motion: reduce` the animation is removed and the marks are simply present. Nothing else on the page enters with motion; every other transition is a 150ms hover (opacity, text color, underline color) plus a 200ms grayscale release on the credits logos.
+Motion: adding `mark-draw` animates `background-size` from `0% 100%` to `100% 100%` over 0.6s with `cubic-bezier(0.16, 1, 0.3, 1)`, `both` fill, delayed by `--mark-delay`. The hero passage staggers its three marks at 0.3s / 0.7s / 1.1s. Under `prefers-reduced-motion: reduce` the animation is removed and the marks are simply present. The hero phone cross-dissolves its screenshots (see Phone Frame). Feature illustrations are inlined SVG (`src/lib/illustration.ts`); once an IntersectionObserver marks one `is-inview`, each shape strokes its outline along its length (`pathLength="1"`, dashoffset 1 to 0, 0.9s) and then its fill settles (0.6s), staggered across 1.4s by `--i / --n`. Under reduced motion the marks, slides, and shapes are simply present. Every other transition is a 150ms hover (opacity, text color, underline color) plus a 200 to 300ms grayscale release on illustrations and credits logos.
 
 ### Browser Surfaces
 `::selection` is the mine-yellow band with dark ink text in both schemes. `:focus-visible` is a 2px ink outline, 3px offset, 2px corner. `theme-color` is `paper` per scheme. Prices use `tabular-nums`. Credits logos sit at `grayscale` until hovered.

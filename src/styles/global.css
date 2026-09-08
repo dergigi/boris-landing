@@ -196,6 +196,54 @@
   mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
 }
 
+/* Feature illustrations draw themselves in: each shape's outline is stroked
+   along its length, then the fill settles in. Staggered by `--i` of `--n`.
+   Hidden only once JS marks the svg `illo-ready`, so no-JS still shows them. */
+@utility illo {
+  & :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0;
+  }
+  &.illo-ready :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke-dashoffset: 1;
+  }
+  &.is-inview :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+    animation:
+      illo-outline 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      illo-fill 0.6s ease-out forwards;
+    animation-delay:
+      calc(var(--i) / var(--n) * 1.4s),
+      calc(var(--i) / var(--n) * 1.4s + 0.5s);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &.illo-ready :is(path, circle, ellipse, rect, polygon, polyline, line):not(defs *) {
+      fill-opacity: 1;
+      stroke-opacity: 0;
+      animation: none;
+    }
+  }
+}
+
+@keyframes illo-outline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes illo-fill {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
 /* Android device frame for the hero: matte bezel, punch-hole camera, no gloss, no shadow. */
 @utility device {
   position: relative;
