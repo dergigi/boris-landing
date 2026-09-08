@@ -28,20 +28,43 @@ colors:
   mark-nostrverse-edge-dark: "#c084fc"
 typography:
   display:
+    fontSize: "4.25rem"
     fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
-    fontSize: "2.5rem / 3.75rem (sm) / 4.25rem (lg)"
+    fontWeight: 600
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
+  display-sm:
+    fontSize: "3.75rem"
+    fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
+    fontWeight: 600
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
+  display-mobile:
+    fontSize: "2.5rem"
+    fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
     fontWeight: 600
     lineHeight: 1.05
     letterSpacing: "-0.02em"
   headline:
+    fontSize: "2.25rem"
     fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
-    fontSize: "1.875rem / 2.25rem (sm)"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
+  headline-mobile:
+    fontSize: "1.875rem"
+    fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-0.025em"
   passage:
+    fontSize: "1.75rem"
     fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
-    fontSize: "1.25rem / 1.75rem (sm)"
+    fontWeight: 400
+    lineHeight: 1.55
+  passage-mobile:
+    fontSize: "1.25rem"
+    fontFamily: "Source Serif 4 Variable, Georgia, Times New Roman, serif"
     fontWeight: 400
     lineHeight: 1.55
   title:
@@ -51,8 +74,13 @@ typography:
     lineHeight: 1.33
     letterSpacing: "-0.025em"
   body-lead:
+    fontSize: "1.25rem"
     fontFamily: "Inter Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.125rem / 1.25rem (sm)"
+    fontWeight: 400
+    lineHeight: 1.625
+  body-lead-mobile:
+    fontSize: "1.125rem"
+    fontFamily: "Inter Variable, ui-sans-serif, system-ui, sans-serif"
     fontWeight: 400
     lineHeight: 1.625
   body:
