@@ -1,6 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { LIGHTNING_ADDRESS, NOSTR_PROFILE_URI } from '../config/links';
+import { NOSTR_PROFILE_URI } from '../config/links';
 
 const tiers = [
   {
@@ -56,7 +56,7 @@ const tiers = [
       </a>
       <p class="text-sm leading-relaxed text-ink-2">
         Opens the Boris profile in your nostr client.<br class="hidden sm:block" />
-        No client at hand? Send sats to <a href={`lightning:${LIGHTNING_ADDRESS}`} class="link-inline">{LIGHTNING_ADDRESS}</a>.
+        Don't have one yet? <a href="https://nostr-resources.com/#clients" target="_blank" rel="noopener noreferrer" class="link-inline">Pick a client</a>.
       </p>
     </div>
   </div>

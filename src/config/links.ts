@@ -7,7 +7,6 @@ export const GITHUB_URL = 'https://github.com/dergigi/boris';
 export const BORIS_NPUB = 'npub19802see0gnk3vjlus0dnmfdagusqrtmsxpl5yfmkwn9uvnfnqylqduhr0x';
 export const NOSTR_PROFILE_URI = `nostr:${BORIS_NPUB}`;
 export const NJUMP_PROFILE_URL = `https://njump.to/${BORIS_NPUB}`;
-export const LIGHTNING_ADDRESS = 'greatrock62@walletofsatoshi.com';
 
 export const NAV_LINKS = [
   { href: '#features', label: 'Features' },
