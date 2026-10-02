@@ -16,6 +16,9 @@ const {
   type: ogType = 'website',
   url = Astro.url?.href,
 } = Astro.props;
+
+const canonicalUrl = url ? new URL(url, Astro.site).href : undefined;
+const imageUrl = image ? new URL(image, Astro.site).href : undefined;
 ---
 
 <!doctype html>
@@ -25,7 +28,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {url && <link rel="canonical" href={url} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta name="theme-color" content="#fffff0" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#18181b" media="(prefers-color-scheme: dark)" />
 
@@ -33,14 +36,18 @@ const {
     {title && <meta property="og:title" content={title} />}
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content={ogType} />
-    {url && <meta property="og:url" content={url} />}
-    {image && <meta property="og:image" content={image} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    {imageUrl && <meta property="og:image:secure_url" content={imageUrl} />}
+    {imageUrl && <meta property="og:image:type" content="image/png" />}
+    {imageUrl && <meta property="og:image:width" content="1200" />}
+    {imageUrl && <meta property="og:image:height" content="630" />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     {title && <meta name="twitter:title" content={title} />}
     {description && <meta name="twitter:description" content={description} />}
-    {image && <meta name="twitter:image" content={image} />}
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
